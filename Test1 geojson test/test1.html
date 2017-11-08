@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map; //Oggetto mappa, non ancora inizializzato
+      function initMap() {
+        var centro = {lat: -25.363, lng: 131.044}; //Coordinate per il centro
+        var poli1 = [ //Coordinate per un poligono
+            {lat: -25.330573, lng: 131.066969},
+            {lat: -25.348075, lng: 131.093054},
+            {lat: -25.389679, lng: 131.058076},
+            {lat: -25.350218, lng: 130.954329},
+            {lat: -25.334681, lng: 130.996619},
+            {lat: -25.277334, lng: 131.014206}
+        ];
+        var mapOptions = {//Opzioni della mappa, scritte in un oggetto per comodità
+          zoom: 8,
+          center: centro
+        }
+        var icone = { //Oggetto che contiente le variabili per diversi tipi di icone
+          iconinfo: 'https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png'
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions); //Inizializzazione dell'oggetto mappa, sulla div 'map', con le opzioni che abbiamo definito prima
+        var markerCentro = new google.maps.Marker({ //Creazione e inizializzazione di un oggetto marker
+          position: centro, //Posizione sulla variabile centro
+          map: map, //Inizializzato sulla mappa 'map'
+          icon: icone.iconinfo, //Con l'icona iconinfo dell'oggetto icone
+          title: 'Centro'
+        });
+        var poligono1 = new google.maps.Polygon({ //Inizializzazione di un oggetto poligono
+          paths: poli1, //con le coordinate dell' oggetto poli1
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 3,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+        poligono1.setMap(map); //scrittura del poligono sulla mappa map
+        //variabile contenente una stringa e diverse div, utile a visualizzare del testo formattato su una finestra
+        var contenuto = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Centro</h1>'+
+          '<div id="bodyContent">'+
+          '<p>'+
+          'Questa e una infowindows di prova, ci si possono scrivere cose, wow'+
+          '</p>'+
+          '</div>'+
+          '</div>';
+        var infowindow = new google.maps.InfoWindow({ //Inizializzazione di una finestra con il contenuto della stringa vista in precedenza
+          content: contenuto
+        });
+        markerCentro.addListener('click',//Funzione che 'ascolta' un evento 'click' proveniente da markerCentro, e apre una funzione che visualizza la finestra sull marker
+          function() {
+            infowindow.open(map, markerCentro);
+          }
+        );
+        /*
+        map.data.loadGeoJson('geodata.json');
+        map.data.setStyle(function(feature) {
+          return {icon:feature.getProperty('icon')};
+        });
+        var infowindow2 = new google.maps.InfoWindow();
+        map.data.addListener('click', function(event) {
+            var desc = event.feature.getProperty("Description");
+            var titolo = event.feature.getProperty("title");
+            var cont1 = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">'+titolo+'</h1>'+
+              '<div id="bodyContent">'+
+              '<p>'+desc+'</p>'+
+              '</div>';
+            infowindow2.setContent(cont1);
+            infowindow2.setPosition(event.feature.getGeometry().get());
+            infowindow2.open(map);
+        });*/
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAzlOLkioXhYUpOgMMQoDaX1j2W0bC18AU &callback=initMap"
+    async defer></script>
+  </body>
+</html>

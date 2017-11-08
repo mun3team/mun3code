@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+      	"icon": "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+        "title": "marker da GeoJSON 1",
+        "Description": "Questa descrizione è stata caricata da GeoJSON"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.011962890625,
+          -25.32664914186939
+        ]
+      }
+    }
+  ]
+}

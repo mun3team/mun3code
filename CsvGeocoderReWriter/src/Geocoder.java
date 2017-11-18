@@ -28,7 +28,7 @@ public class Geocoder {
         String longitude = gLatLng.nextToken();
         lat = Double.parseDouble(latitude);
         lon = Double.parseDouble(longitude);*/
-		System.out.println(response);
+		//System.out.println(response);
 		String delimiter = "[,{} :\n\r\"]+";
 		String[] tokens = response.split(delimiter);
 		for(int i = 0; i < tokens.length; i++) {
@@ -39,7 +39,7 @@ public class Geocoder {
 				lon = Double.parseDouble(lonS);
 				//System.out.println("Stringhe: "+latS+" "+lonS);
 			}
-			System.out.println(tokens[i]);
+			//System.out.println(tokens[i]);
 		}
 		
     }
@@ -60,7 +60,7 @@ public class Geocoder {
         return url.openStream();
     }
 	public String encode(final String address){
-        return "https://maps.googleapis.com/maps/api/geocode/"+output+"?address="+urlEncode(address)+"&key=AIzaSyBCXShW7LBmtgz4Ncdsl3FWBsRcym6jvkc";
+        return "https://maps.googleapis.com/maps/api/geocode/"+output+"?address="+urlEncode(address)+"&key=AIzaSyAblCOZQC_P1XW9c4yjtCmfM2sIf3vKj_k";
     }
 	private String urlEncode(final String value){
         try{

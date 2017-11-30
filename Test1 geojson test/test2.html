@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map; //Oggetto mappa, non ancora inizializzato
+      function initMap() {
+        var centro = {lat: -25.363, lng: 131.044}; //Coordinate per il centro
+        var mapOptions = {//Opzioni della mappa, scritte in un oggetto per comodità
+          zoom: 8,
+          center: centro
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions); //Inizializzazione dell'oggetto 
+        map.data.loadGeoJson('geodata4.json');
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
+    </script>
+  </body>
+</html>

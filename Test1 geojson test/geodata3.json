@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+      	"icon": "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+        "title": "marker da GeoJSON 1",
+        "Description": "Questa descrizione è stata caricata da GeoJSON"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.011962890625,
+          -25.32664914186939
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "geometry":{
+        "type":"Polygon",
+        "coordinates":[[[1514080.2243873032,5034198.697447125],[1514097.3244059617,5034251.612481962],[1514128.894401995,5034259.697441874],[1514154.2894040626,5034262.277464638],[1514166.3393743264,5034198.582483572],[1514223.2943614346,5034135.342518836],[1514193.4394265239,5034113.3374921],[1514122.1494389647,5034191.777491422],[1514080.2243873032,5034198.697447125]]]
+      },
+      "properties":{
+        "OBJECTID": "123"
+      }
+    }
+  ]
+}

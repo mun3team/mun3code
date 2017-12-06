@@ -1,0 +1,6 @@
+Links:
+	Fusion Tables:
+		Sezioni di Censimento 2011:	https://www.google.com/fusiontables/DataSource?docid=1zV1qi9oQVzRqllJ8t4oUMbuXY2s9avfGRD_yv136
+		Tabella dati test1:	https://www.google.com/fusiontables/DataSource?docid=1xzk5bI_P2UqMSYDBXfm30JklxdRKZ0ld_61oNTtI
+		Sezioni 2011 con dati test1:	https://www.google.com/fusiontables/DataSource?docid=17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP
+	

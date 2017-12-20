@@ -20,5 +20,5 @@ Codice per il progetto municipio 3 della 4A informatica <br>
   Andrea Tricarico<br>
   Gabriele Resigotti<br>
   Alessandro Garanzini<br>
-  Vincenzo Locricchio<br>
+  Vincenzo Lo Cricchio<br>
   Federico Yu<br>

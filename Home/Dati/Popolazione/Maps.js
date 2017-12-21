@@ -1,4 +1,3 @@
-
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 45.476780, lng: 9.259794},

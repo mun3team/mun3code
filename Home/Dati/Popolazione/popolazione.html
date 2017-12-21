@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+			</script>
+		<script type="text/javascript" src="https://www.google.com/jsapi">
+			</script>
+		<script src="Charts.js">
+			</script>
+		<script src="Maps.js" >
+			</script>
+		<link href="/apis/fusiontables/docs/samples/style/default.css"
+        rel="stylesheet" type="text/css">
 		<title>Popolazione</title>
-		<style>
+		<style type="text/css">
+			table {
+				width: 40%;
+			}
+			th {
+				width: 30%;
+				text-align: left;
+			}
 			#map {
 				height: 400px;
 				width: 100%;
 		       }
+		    #chart {
+		    	height: 400px;
+		    	width: 600px;
+		    }
 		</style>
 	</head>
 	<body>
@@ -15,10 +36,7 @@
 		<div id="map"></div>
 		<h2>Tabelle</h2>
 		<div id="chart"></div>
-		<script src="Maps.js" >
-		</script>
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
-		</script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
+			</script>
 	</body>
 </html>

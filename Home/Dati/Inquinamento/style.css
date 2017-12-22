@@ -1,0 +1,19 @@
+table {
+	width: 40%;
+}
+th {
+	width: 30%;
+	text-align: left;
+}
+.scrollit {
+    overflow:scroll;
+    height:100px;
+}
+#map {
+	height: 400px;
+	width: 70%;
+   }
+#chart {
+	height: 400px;
+	width: 600px;
+}

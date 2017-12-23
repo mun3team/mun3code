@@ -5,9 +5,10 @@ th {
 	width: 30%;
 	text-align: left;
 }
-.scrollit {
+.tabScorrevole {
     overflow:scroll;
-    height:100px;
+	height:400px;
+	width: 40%;
 }
 #map {
 	height: 400px;

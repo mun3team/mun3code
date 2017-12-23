@@ -1,0 +1,20 @@
+table {
+	width: 40%;
+}
+th {
+	width: 30%;
+	text-align: left;
+}
+.tabScorrevole {
+    overflow:scroll;
+	height:400px;
+	width: 40%;
+}
+#map {
+	height: 400px;
+	width: 70%;
+   }
+#chart {
+	height: 400px;
+	width: 600px;
+}

@@ -1,3 +1,6 @@
+/*
+  Tabella
+*/
 google.load('visualization', '1');
 function drawTable() {
   // Construct query
@@ -33,3 +36,31 @@ function drawTable() {
   });
 }
 google.setOnLoadCallback(drawTable);
+
+/*
+  Grafico a Barre
+*/
+
+google.load('visualization', '1', { packages: ['corechart'] });
+
+function drawTableChart() {
+  google.visualization.drawChart({
+    containerId: 'barChart',
+    dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
+    query: "SELECT 'SEZ2011' as Sez2011, " +
+      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
+      'FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP',
+    chartType: 'BarChart',
+    options: {
+      title: 'Grafico a barre',
+      vAxis: {
+        title: 'sez2011'
+      },
+      hAxis: {
+        title: 'Dati'
+      }
+    }
+  });
+}
+
+google.setOnLoadCallback(drawTableChart);

@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Caricamento google Charts API -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 			</script>
+		<!-- Caricamento google JSON API -->
 		<script type="text/javascript" src="https://www.google.com/jsapi">
 			</script>
+		<!-- Caricamento del nostro file JavaScript per le tabelle e grafici -->
 		<script src="Charts.js">
 			</script>
+		<!-- Caricamento del nostro file JavaScript per la mappa -->
 		<script src="Maps.js" >
 			</script>
-		<link href="/apis/fusiontables/docs/samples/style/default.css"
-        rel="stylesheet" type="text/css">
+		<!-- Caricamento di un css di default, per le tabelle, ancora da vedere se funziona o meno-->
+		<link href="/apis/fusiontables/docs/samples/style/default.css" rel="stylesheet" type="text/css">
+		<!-- Caricamento del nostro file .css per lo stile della pagina -->
         <link rel="stylesheet" type="text/css" href="style.css">
 		<title>Nome Pagina</title>
 	</head>
@@ -22,6 +27,7 @@
 		<div id="table" class = "tabScorrevole"><</div>
 		<h2>Grafico a Barre</h2>
 		<div id="barChart"></div>
+		<!-- Il caricamento della api di google maps, va mantenuto in fondo a body, in quanto non carica correttamente all'interno della head. -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
 			</script>
 	</body>

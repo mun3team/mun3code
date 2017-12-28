@@ -1,9 +1,10 @@
 function initMap() {
+  //Inizializzazione della var contenete la mappa, con definizione del centro, del livello di zoom e della div su cui far partire la cosa
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 45.476780, lng: 9.259794},
     zoom: 14
   });
-
+  //Inizializzazione del layer di poligoni derivato dalla fusion table, con definizione del tipo, della tabella, e di vari elementi di stile
   var layer = new google.maps.FusionTablesLayer({
     query: {
       select: 'geometry',
@@ -26,5 +27,6 @@ function initMap() {
       }
     }]
   });
+  //Caricamento del layer sopra alla mappa inizializzata in precedenza
   layer.setMap(map);
 }

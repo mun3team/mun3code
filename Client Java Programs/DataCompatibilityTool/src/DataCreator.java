@@ -11,39 +11,42 @@ public class DataCreator {
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		System.out.println("Inizio");
-		File file = new File("Resources/FasceEta.csv");
+		String pathName = "Resources/StatoEdifici";
+		String extension = ".csv";
+		int length = 17;
+		File file = new File(pathName+extension);
 		CsvReader csvReader = new CsvReader();
-		csvReader.setFieldSeparator(',');
+		csvReader.setFieldSeparator(';');
 		csvReader.setContainsHeader(false);
 		List<String[]> lista = new ArrayList<>();
 		int rowCounter = 0;
 		try (CsvParser csvParser = csvReader.parse(file, StandardCharsets.UTF_8)) {
 			CsvRow row;
 			while ((row = csvParser.nextRow()) != null) {
-				rowCounter++;
 				System.out.println("Read line: " + row);
-				if(rowCounter != 1){
+				if(rowCounter != 0){
 					String SEZ2011 = row.getField(0)+".0000000";
-					String[] stringArrayRow = new String[22];
+					String[] stringArrayRow = new String[length];
 					stringArrayRow[0] = SEZ2011;
-					for(int i = 1; i < 22; i++){
+					for(int i = 1; i < length; i++){
 						stringArrayRow[i] = row.getField(i);
 					}
 					lista.add(stringArrayRow);
 				}
 				else{
-					String[] stringArrayRow = new String[22];
-					for(int i = 0; i < 22; i++){
+					String[] stringArrayRow = new String[length];
+					for(int i = 0; i < length; i++){
 						stringArrayRow[i] = row.getField(i);
 					}
 					lista.add(stringArrayRow);
 				}
+				rowCounter++;
 
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		File fileO = new File("Resources/FasceEtaMod.csv");
+		File fileO = new File(pathName+"Mod"+extension);
 		CsvWriter csvWriter = new CsvWriter();
 		csvWriter.setFieldSeparator(',');
 		csvWriter.setLineDelimiter("\r\n".toCharArray());

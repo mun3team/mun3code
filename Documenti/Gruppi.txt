@@ -1,0 +1,21 @@
+Project masters (Masters):
+	Andrea Grandi
+	Samuele Celli
+Gruppo Google Charts (Charts):
+	Cristian Cuffari
+	Manuel Martino
+	Raffaella Chiappella
+	Daniel Hristov
+	John Rebyn Lambinicio
+Gruppo Google Maps (Maps):
+	Marco Oriente
+	Valentina Tius
+	Silvia Tarallo
+	Cristian Crippa
+	Alessandro Chen
+Gruppo Web Design (Design):
+	Andrea Tricarico
+	Gabriele Resigotti
+	Alessandro Garanzini
+	Vincenzo Lo Cricchio
+	Federico Yu

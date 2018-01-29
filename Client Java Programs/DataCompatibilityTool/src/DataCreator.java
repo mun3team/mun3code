@@ -11,12 +11,12 @@ public class DataCreator {
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		System.out.println("Inizio");
-		String pathName = "Resources/StatoEdifici";
+		String pathName = "Resources/STR";
 		String extension = ".csv";
-		int length = 17;
+		int length = 44;
 		File file = new File(pathName+extension);
 		CsvReader csvReader = new CsvReader();
-		csvReader.setFieldSeparator(';');
+		csvReader.setFieldSeparator(',');
 		csvReader.setContainsHeader(false);
 		List<String[]> lista = new ArrayList<>();
 		int rowCounter = 0;

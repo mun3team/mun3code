@@ -29,7 +29,10 @@ public class DataCreator {
 					String[] stringArrayRow = new String[length];
 					stringArrayRow[0] = SEZ2011;
 					for(int i = 1; i < length; i++){
-						stringArrayRow[i] = row.getField(i);
+						if(row.getField(i).equals("#DIV/0!"))
+							stringArrayRow[i] = "0";
+						else
+							stringArrayRow[i] = row.getField(i);
 					}
 					lista.add(stringArrayRow);
 				}

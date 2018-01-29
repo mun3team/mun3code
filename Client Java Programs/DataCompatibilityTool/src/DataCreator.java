@@ -11,9 +11,9 @@ public class DataCreator {
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		System.out.println("Inizio");
-		String pathName = "Resources/STR";
+		String pathName = "Resources/FasceEta";
 		String extension = ".csv";
-		int length = 44;
+		int length = 22;
 		File file = new File(pathName+extension);
 		CsvReader csvReader = new CsvReader();
 		csvReader.setFieldSeparator(',');

@@ -25,7 +25,7 @@ public class DataCreator {
 			while ((row = csvParser.nextRow()) != null) {
 				System.out.println("Read line: " + row);
 				if(rowCounter != 0){
-					String SEZ2011 = row.getField(0)+".0000000";
+					String SEZ2011 = row.getField(0)+".00000000";
 					String[] stringArrayRow = new String[length];
 					stringArrayRow[0] = SEZ2011;
 					for(int i = 1; i < length; i++){

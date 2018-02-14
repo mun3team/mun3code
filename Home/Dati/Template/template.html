@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Caricamento google Charts API -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 			</script>
@@ -16,7 +18,15 @@
 		<!-- Caricamento di un css di default, per le tabelle, ancora da vedere se funziona o meno-->
 		<link href="/apis/fusiontables/docs/samples/style/default.css" rel="stylesheet" type="text/css">
 		<!-- Caricamento del nostro file .css per lo stile della pagina -->
-        <link rel="stylesheet" type="text/css" href="style.css">
+  	<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+		body {font-family: "Lato", sans-serif}
+		.mySlides {display: none}
+		</style>
+<body>
 		<title>Nome Pagina</title>
 	</head>
 	<body>
@@ -24,11 +34,11 @@
 		<h6>Sottotitolo</h6>
 		<h2>Mappa</h2>
 		<div id="map"></div>
-		<button onclick="layerSelector(1)">Mod2</button>
-		<button onclick="layerSelector(2)">Mod2</button>
-		<button onclick="layerSelector(3)">Mod3</button>  
+		<button id="mod1">Mod1</button>
+		<button id="mod2">Mod3</button>
+		<button id="mod3">Mod3</button>
 		<h2>Tabella</h2>
-		<div id="table" class = "tabScorrevole"><</div>
+		<div id="table" class = "tabScorrevole"></div>
 		<h2>Grafico a Barre</h2>
 		<div id="barChart"></div>
 		<!-- Il caricamento della api di google maps, va mantenuto in fondo a body, in quanto non carica correttamente all'interno della head. -->

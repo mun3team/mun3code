@@ -61,7 +61,7 @@ function layerSelector(mode){
     templateId: 2,
     styles: [{
       polygonOptions: {
-        fillColor: '#00FF00',
+        fillColor: '#AAFF0A',
         fillOpacity: 0.3
       }
     }, {

@@ -1,7 +1,14 @@
+google.load('visualization', '1');
+google.load('visualization', '1', {packages:['table', 'corechart']});
+//google.load('visualization', '1', { packages: ['corechart'] });
+google.setOnLoadCallback(drawTable);
+google.setOnLoadCallback(drawTableChart);
+google.setOnLoadCallback(drawBarChart);
+
 /*
   Tabella
 */
-google.load('visualization', '1');
+
 function drawTable() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
   var query = "SELECT 'SEZ2011' as Sez2011, " +
@@ -46,15 +53,48 @@ function drawTable() {
     document.getElementById('table').innerHTML = ftdata.join('');
   });
 }
-google.setOnLoadCallback(drawTable);
+
+/*
+function drawTable(response) {
+  console.log(response);
+  for (var i = 0; i < response.items.length; i++) {
+    var item = response.items[i];
+    // Either show the body or the automatic columns of the template
+    if (item.body) {
+      document.getElementById("table").innerHTML += "<br>" + item.body;
+    } else {
+      for (var j = 0; j < item.automaticColumnNames.length; j++) {
+        document.getElementById("table").innerHTML += "<br>" + item.automaticColumnNames[j];
+      }
+    }
+  }
+}
+*/
+
+function drawTableChart() {
+  var data = new google.visualization.DataTable();
+  google.visualization.drawChart({
+    containerId: 'tableChart',
+    dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
+    query: "SELECT 'SEZ2011' as Sez2011, " +
+      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
+      'FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP',
+    chartType: 'Table',
+    options: {
+      title: 'Tabella',
+      height: '400',
+      width: '40%'
+    }
+  });
+}
+
+
 
 /*
   Grafico a Barre
 */
 
-google.load('visualization', '1', { packages: ['corechart'] });
-
-function drawTableChart() {
+function drawBarChart() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
@@ -74,4 +114,3 @@ function drawTableChart() {
   });
 }
 
-google.setOnLoadCallback(drawTableChart);

@@ -48,12 +48,15 @@
 			</tr>
 		</table>
 		<h2 align="center">Tabella</h2>
-		<h6 align="center">A causa della quantità di dati, il browser potrebbe bloccare la tabella. <br>
-		E' comunque possibile visualizzarla al seguente <a href="https://fusiontables.google.com/DataSource?docid=17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP">link</a><br>
+		<h6 align="center">A causa della quantit&agrave; di dati, il browser potrebbe bloccare la tabella. <br>
+		&Egrave; comunque possibile visualizzarla al seguente <a href="https://fusiontables.google.com/DataSource?docid=17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP">link</a><br>
 		o ricaricando la pagina dopo qualche secondo.
 		</h6>
-		<div id="tabella" class = "tabScorrevole"></div>
+		<div id="outerdiv">
+			<div id="tabella" class = "tabChartScorrevole"></div>
+		</div>
 		<div id="barChart"></div>
+		<div id="scatterChart"></div>
 		<!-- Il caricamento della api di google maps, va mantenuto in fondo a body, in quanto non carica correttamente all'interno della head. -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
 			</script>

@@ -10,10 +10,6 @@ google.load('visualization', '1', {packages:['table', 'corechart']});
 loadData();
 //loadChartData();
 
-$(window).resize(function(){
-  drawBarChart(jsonCache);
-});
-
 function loadData() {
   var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
   var query = "SELECT " +
@@ -26,11 +22,19 @@ function loadData() {
   $.getJSON(encodeURI(url)).done( function(data){
     //console.log(data);
     jsonCache = data;
-    google.setOnLoadCallback(drawTable(data));
+    google.setOnLoadCallback(drawTableChart(data));
     google.setOnLoadCallback(drawBarChart(data));
+    google.setOnLoadCallback(drawScatterChart(data));
+
+    $(window).resize(function(){
+      drawBarChart(jsonCache);
+      drawScatterChart(jsonCache);
+    });
+
   }).fail(function(){
-    google.setOnLoadCallback(drawTableSmall);
+    google.setOnLoadCallback(drawTableChartSmall);
     google.setOnLoadCallback(drawBarChartSmall);
+    google.setOnLoadCallback(drawScatterChartSmall);
   }); 
 }
 
@@ -85,9 +89,9 @@ function drawTableSmall() {
 }
 
 
-/*
+
 //LIMITATO A 500 LINEE
-function drawTableChart() {
+function drawTableChartSmall() {
   var data = new google.visualization.DataTable();
   google.visualization.drawChart({
     containerId: 'tableChart',
@@ -103,7 +107,6 @@ function drawTableChart() {
     }
   });
 }
-*/
 
 
 /*
@@ -132,6 +135,27 @@ function drawBarChartSmall() {
   });
 }
 
+function drawScatterChartSmall() {
+  google.visualization.drawChart({
+    containerId: 'barChart',
+    dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
+    query: "SELECT"+
+      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
+      'FROM '+ tableId,
+    chartType: 'ScatterChart',
+    options: {
+      height: '800',
+      width: '70%',
+      title: 'Grafico a dispersione',
+      vAxis: {
+        title: 'Dato Numerico'
+      },
+      hAxis: {
+        title: 'Popolazione'
+      }
+    }
+  });
+}
 
 function drawBarChart(jsonData) {
   //console.log(jsonData);
@@ -156,10 +180,16 @@ function drawBarChart(jsonData) {
   //console.log(data.toJSON());
   var chart = new google.visualization.BarChart(document.getElementById('barChart'));
   var options = {
-    height: '800',
-    width: '70%',
-    title: 'Grafico a barre'
-  }
+      height: '800',
+      width: '70%',
+      title: 'Grafico a barre',
+      vAxis: {
+        title: 'Sezione di censimento'
+      },
+      hAxis: {
+        title: 'Dati'
+      }
+    }
   chart.draw(data, options);
 }
 
@@ -167,7 +197,7 @@ function drawBarChart(jsonData) {
 function drawTable(jsonData) {
   var numCols = jsonData.columns.length;
   var numRows = jsonData.rows.length;
-  var ftdata = ['<table><thead><tr>'];
+  var ftdata = ['<table cellpadding="10"><thead><tr>'];
   for (var i = 0; i < numCols; i++) {
     var columnTitle = jsonData.columns[i];
     ftdata.push('<th>' + columnTitle + '</th>');
@@ -185,3 +215,67 @@ function drawTable(jsonData) {
   document.getElementById('tabella').innerHTML = ftdata.join('');
 }
 
+function drawScatterChart(jsonData) {
+  //console.log(jsonData);
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', jsonData.columns[1]);
+  data.addColumn('number', jsonData.columns[2]);
+
+  jsonData.rows.forEach(function (row) {
+    /*
+    console.log(row[0]);
+    console.log(row[1]);
+    console.log(row[2]);
+    */
+    data.addRow([
+      row[1],
+      Number(row[2])
+    ]);
+  });
+  // Instantiate and draw our chart, passing in some options.
+  //console.log(data.toJSON());
+  var chart = new google.visualization.ScatterChart(document.getElementById('scatterChart'));
+  var options = {
+    height: '800',
+    width: '70%',
+    title: 'Grafico a dispersione',
+    vAxis: {
+      title: 'Dato Numerico'
+    },
+    hAxis: {
+      title: 'Popolazione'
+    }
+  }
+  chart.draw(data, options);
+}
+
+function drawTableChart(jsonData) {
+  //console.log(jsonData);
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', jsonData.columns[0]);
+  data.addColumn('number', jsonData.columns[1]);
+  data.addColumn('number', jsonData.columns[2]);
+
+  jsonData.rows.forEach(function (row) {
+    /*
+    console.log(row[0]);
+    console.log(row[1]);
+    console.log(row[2]);
+    */
+    data.addRow([
+      row[0],
+      row[1],
+      Number(row[2])
+    ]);
+  });
+  // Instantiate and draw our chart, passing in some options.
+  //console.log(data.toJSON());
+  var chart = new google.visualization.Table(document.getElementById('tabella'));
+  var options = {
+    title: 'Tabella',
+    width: '65%',
+    page: 'enable',
+    pageSize: '15'
+  }
+  chart.draw(data, options);
+}

@@ -25,6 +25,10 @@ button{
     overflow-x:auto;
     overflow:auto;
 }
+.tabChartScorrevole{
+	margin-left: auto;
+	margin-right: auto;
+}
 #mapold {
 	height: 600px;
 	width: 70%;

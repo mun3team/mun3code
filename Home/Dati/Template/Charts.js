@@ -1,6 +1,6 @@
 var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
 var tableId = "17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
-
+var jsonCache;
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
 //google.load('visualization', '1', { packages: ['corechart'] });
@@ -11,7 +11,7 @@ loadData();
 //loadChartData();
 
 $(window).resize(function(){
-  loadChartData();
+  drawBarChart(jsonCache);
 });
 
 function loadData() {
@@ -25,6 +25,7 @@ function loadData() {
   var url = dataSourceUrl + query + from +"&key=" + key;
   $.getJSON(encodeURI(url)).done( function(data){
     //console.log(data);
+    jsonCache = data;
     google.setOnLoadCallback(drawTable(data));
     google.setOnLoadCallback(drawBarChart(data));
   }).fail(function(){
@@ -133,7 +134,7 @@ function drawBarChartSmall() {
 
 
 function drawBarChart(jsonData) {
-  console.log(jsonData);
+  //console.log(jsonData);
   var data = new google.visualization.DataTable();
   data.addColumn('number', jsonData.columns[0]);
   data.addColumn('number', jsonData.columns[1]);

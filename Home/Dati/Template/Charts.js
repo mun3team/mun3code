@@ -6,33 +6,39 @@ google.load('visualization', '1', {packages:['table', 'corechart']});
 //google.load('visualization', '1', { packages: ['corechart'] });
 //google.setOnLoadCallback(drawTable);
 //google.setOnLoadCallback(drawTableChart);
-google.setOnLoadCallback(drawBarChart);
+//google.setOnLoadCallback(drawBarChart);
 loadData();
+//loadChartData();
 
 $(window).resize(function(){
-  drawBarChart();
+  loadChartData();
 });
 
 function loadData() {
   var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
-  var query = "SELECT 'SEZ2011' as Sez2011, " +
+  var query = "SELECT " +
+      "'SEZ2011' as Sez2011, " +
       "'POP_2010' as pop2010, " +
       "'DATO NUMERICO' as Dato";
-  var limit = " LIMIT 20";
+  var limit = " LIMIT 20"; //Solo per debuggare
   var from = " FROM " + tableId;
-  var url = dataSourceUrl + query + from + "&key=" + key;
-  $.getJSON(encodeURI(url), function(data){
+  var url = dataSourceUrl + query + from +"&key=" + key;
+  $.getJSON(encodeURI(url)).done( function(data){
     //console.log(data);
     google.setOnLoadCallback(drawTable(data));
+    google.setOnLoadCallback(drawBarChart(data));
+  }).fail(function(){
+    google.setOnLoadCallback(drawTableSmall);
+    google.setOnLoadCallback(drawBarChartSmall);
   }); 
 }
 
 /*
   Tabella
 */
-/*
+
 //LIMITATO A 500 LINEE
-function drawTable() {
+function drawTableSmall() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
   var query = "SELECT 'SEZ2011' as Sez2011, " +
       "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
@@ -73,10 +79,10 @@ function drawTable() {
 	//Chiusura della tabella
     ftdata.push('</tbody></table>');
 	//Caricamento della stringa della tabella sulla div 'table'
-    document.getElementById('table').innerHTML = ftdata.join('');
+    document.getElementById('tabella').innerHTML = ftdata.join('');
   });
 }
-*/
+
 
 /*
 //LIMITATO A 500 LINEE
@@ -103,7 +109,7 @@ function drawTableChart() {
   Grafico a Barre
 */
 
-function drawBarChart() {
+function drawBarChartSmall() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
@@ -125,6 +131,38 @@ function drawBarChart() {
   });
 }
 
+
+function drawBarChart(jsonData) {
+  console.log(jsonData);
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', jsonData.columns[0]);
+  data.addColumn('number', jsonData.columns[1]);
+  data.addColumn('number', jsonData.columns[2]);
+
+  jsonData.rows.forEach(function (row) {
+    /*
+    console.log(row[0]);
+    console.log(row[1]);
+    console.log(row[2]);
+    */
+    data.addRow([
+      row[0],
+      row[1],
+      Number(row[2])
+    ]);
+  });
+  // Instantiate and draw our chart, passing in some options.
+  //console.log(data.toJSON());
+  var chart = new google.visualization.BarChart(document.getElementById('barChart'));
+  var options = {
+    height: '800',
+    width: '70%',
+    title: 'Grafico a barre'
+  }
+  chart.draw(data, options);
+}
+
+
 function drawTable(jsonData) {
   var numCols = jsonData.columns.length;
   var numRows = jsonData.rows.length;
@@ -143,5 +181,6 @@ function drawTable(jsonData) {
     ftdata.push('</tr>');
   }
   ftdata.push('</tbody></table>');
-  document.getElementById('table').innerHTML = ftdata.join('');
+  document.getElementById('tabella').innerHTML = ftdata.join('');
 }
+

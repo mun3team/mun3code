@@ -183,6 +183,7 @@ function drawBarChart(jsonData) {
       height: '800',
       width: '70%',
       title: 'Grafico a barre',
+      enableInteractivity: 'false',
       vAxis: {
         title: 'Sezione di censimento'
       },
@@ -239,6 +240,7 @@ function drawScatterChart(jsonData) {
     height: '800',
     width: '70%',
     title: 'Grafico a dispersione',
+    enableInteractivity: 'false',
     vAxis: {
       title: 'Dato Numerico'
     },

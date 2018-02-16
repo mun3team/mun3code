@@ -1,20 +1,49 @@
 table {
 	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 th {
 	width: 30%;
-	text-align: left;
+	text-align: center;
+}
+button{
+	text-align: center;
+	align-content: center;
+	vertical-align: middle;
 }
 .tabScorrevole {
-    overflow:scroll;
-	height:400px;
-	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 40%;
+    border: 1px solid #ddd;
+    height: 400px;
+    overflow-x:auto;
+    overflow:auto;
 }
-#map {
-	height: 400px;
+#mapold {
+	height: 600px;
 	width: 70%;
    }
-#chart {
-	height: 400px;
-	width: 600px;
+.chart {
+  width: 90%; 
+  min-height: 600px;
+}
+
+#outerdiv {
+	width: 90%;
+	height: 90%;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#map {
+	width: 80%;
+	height: 600px; 
+	margin:0px auto; 
+	display:inline-block
 }

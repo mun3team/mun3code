@@ -1,3 +1,5 @@
+var tableId = "17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
+
 function initMap() {
   //Inizializzazione della var contenete la mappa, con definizione del centro, del livello di zoom e della div su cui far partire la cosa
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -24,6 +26,12 @@ function initMap() {
     layer.setOptions(layerSelector(3));
     console.log("mod3");
   });
+
+  $(window).on('resize', function() {
+    var currCenter = map.getCenter();
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(currCenter);
+  })
 }
 function layerSelector(mode){
   var layer;
@@ -31,7 +39,7 @@ function layerSelector(mode){
     layer = {
     query: {
       select: 'geometry',
-      from: '17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP'
+      from: tableId
     },
     templateId: 2,
     styles: [{
@@ -56,7 +64,7 @@ function layerSelector(mode){
     layer = {
     query: {
       select: 'geometry',
-      from: '17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP'
+      from: tableId
     },
     templateId: 2,
     styles: [{
@@ -81,7 +89,7 @@ function layerSelector(mode){
     layer = {
     query: {
       select: 'geometry',
-      from: '17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP'
+      from: tableId
     },
     templateId: 2,
     styles: [{

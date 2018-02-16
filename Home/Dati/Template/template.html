@@ -23,23 +23,36 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style>
-		body {font-family: "Lato", sans-serif}
-		.mySlides {display: none}
+			body {font-family: "Lato", sans-serif}
 		</style>
-<body>
 		<title>Nome Pagina</title>
 	</head>
 	<body>
-		<h1>Nome Pagina</h1>
-		<h6>Sottotitolo</h6>
-		<h2>Mappa</h2>
-		<div id="map"></div>
-		<button id="mod1">Mod1</button>
-		<button id="mod2">Mod3</button>
-		<button id="mod3">Mod3</button>
-		<h2>Tabella</h2>
+		<h1 align="center">Nome Pagina</h1>
+		<h6 align="center">Sottotitolo</h6>
+		<h2 align="center">Mappa</h2>
+		<div id="outerdiv">
+			<div id="map"></div>
+		</div>
+		<table>
+			<tr>
+				<td align="center" class="th1">
+					<button id="mod1">Mod1</button>
+				</td>
+				<td align="center" class="th1">
+					<button id="mod2">Mod3</button>
+				</td>
+				<td align="center" class="th1">	
+					<button id="mod3">Mod3</button>
+				</td>
+			</tr>
+		</table>
+		<h2 align="center">Tabella</h2>
+		<h6 align="center">A causa della quantità di dati, il browser potrebbe bloccare la tabella. <br>
+		E' comunque possibile visualizzarla al seguente <a href="https://fusiontables.google.com/DataSource?docid=17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP">link</a><br>
+		o ricaricando la pagina dopo qualche secondo.
+		</h6>
 		<div id="table" class = "tabScorrevole"></div>
-		<h2>Grafico a Barre</h2>
 		<div id="barChart"></div>
 		<!-- Il caricamento della api di google maps, va mantenuto in fondo a body, in quanto non carica correttamente all'interno della head. -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">

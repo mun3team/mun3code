@@ -1,4 +1,5 @@
 var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
+var tableId = "17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
 
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
@@ -8,6 +9,9 @@ google.load('visualization', '1', {packages:['table', 'corechart']});
 google.setOnLoadCallback(drawBarChart);
 loadData();
 
+$(window).resize(function(){
+  drawBarChart();
+});
 
 function loadData() {
   var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
@@ -15,7 +19,7 @@ function loadData() {
       "'POP_2010' as pop2010, " +
       "'DATO NUMERICO' as Dato";
   var limit = " LIMIT 20";
-  var from = " FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
+  var from = " FROM " + tableId;
   var url = dataSourceUrl + query + from + "&key=" + key;
   $.getJSON(encodeURI(url), function(data){
     //console.log(data);
@@ -105,9 +109,11 @@ function drawBarChart() {
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
     query: "SELECT 'SEZ2011' as Sez2011, " +
       "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP',
+      'FROM '+ tableId,
     chartType: 'BarChart',
     options: {
+      height: '800',
+      width: '70%',
       title: 'Grafico a barre',
       vAxis: {
         title: 'sez2011'

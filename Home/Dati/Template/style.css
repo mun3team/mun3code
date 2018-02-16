@@ -6,9 +6,13 @@ th {
 	text-align: left;
 }
 .tabScorrevole {
-    overflow:scroll;
-	height:400px;
-	width: 40%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 40%;
+    border: 1px solid #ddd;
+    height: 400px;
+    overflow-x:auto;
+    overflow:auto;
 }
 #map {
 	height: 600px;

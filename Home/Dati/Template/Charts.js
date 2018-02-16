@@ -1,14 +1,33 @@
+var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
+
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
 //google.load('visualization', '1', { packages: ['corechart'] });
-google.setOnLoadCallback(drawTable);
-google.setOnLoadCallback(drawTableChart);
+//google.setOnLoadCallback(drawTable);
+//google.setOnLoadCallback(drawTableChart);
 google.setOnLoadCallback(drawBarChart);
+loadData();
+
+
+function loadData() {
+  var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
+  var query = "SELECT 'SEZ2011' as Sez2011, " +
+      "'POP_2010' as pop2010, " +
+      "'DATO NUMERICO' as Dato";
+  var limit = " LIMIT 20";
+  var from = " FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
+  var url = dataSourceUrl + query + from + "&key=" + key;
+  $.getJSON(encodeURI(url), function(data){
+    //console.log(data);
+    google.setOnLoadCallback(drawTable(data));
+  }); 
+}
 
 /*
   Tabella
 */
-
+/*
+//LIMITATO A 500 LINEE
 function drawTable() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
   var query = "SELECT 'SEZ2011' as Sez2011, " +
@@ -53,24 +72,10 @@ function drawTable() {
     document.getElementById('table').innerHTML = ftdata.join('');
   });
 }
-
-/*
-function drawTable(response) {
-  console.log(response);
-  for (var i = 0; i < response.items.length; i++) {
-    var item = response.items[i];
-    // Either show the body or the automatic columns of the template
-    if (item.body) {
-      document.getElementById("table").innerHTML += "<br>" + item.body;
-    } else {
-      for (var j = 0; j < item.automaticColumnNames.length; j++) {
-        document.getElementById("table").innerHTML += "<br>" + item.automaticColumnNames[j];
-      }
-    }
-  }
-}
 */
 
+/*
+//LIMITATO A 500 LINEE
 function drawTableChart() {
   var data = new google.visualization.DataTable();
   google.visualization.drawChart({
@@ -87,7 +92,7 @@ function drawTableChart() {
     }
   });
 }
-
+*/
 
 
 /*
@@ -114,3 +119,23 @@ function drawBarChart() {
   });
 }
 
+function drawTable(jsonData) {
+  var numCols = jsonData.columns.length;
+  var numRows = jsonData.rows.length;
+  var ftdata = ['<table><thead><tr>'];
+  for (var i = 0; i < numCols; i++) {
+    var columnTitle = jsonData.columns[i];
+    ftdata.push('<th>' + columnTitle + '</th>');
+  }
+  ftdata.push('</tr></thead><tbody>');
+  for (var i = 0; i < numRows; i++) {
+    ftdata.push('<tr>');
+    for(var j = 0; j < numCols; j++) {
+      var rowValue = jsonData.rows[i][j];
+        ftdata.push('<td>' + rowValue + '</td>');
+    }
+    ftdata.push('</tr>');
+  }
+  ftdata.push('</tbody></table>');
+  document.getElementById('table').innerHTML = ftdata.join('');
+}

@@ -8,14 +8,13 @@ function initMap() {
     zoom: 14
   });
 
-  finInfo= new google.maps.InfoWindow;
   if (navigator.geolocation) {//richiesta permessi di geolocalizzazione
     navigator.geolocation.getCurrentPosition(function(position) {
       var posUtente = { //settaggio posizione utente
         lat: position.coords.latitude,//latitudine utente
         lng: position.coords.longitude//longitudine utente
       };
-
+	 finInfo= new google.maps.InfoWindow;
       /*
         Se l'utente si trova in un generico confine all'interno di Milano
       */
@@ -26,20 +25,25 @@ function initMap() {
           map: map
         });
         */
-        finInfo.setContent('Tu sei qui');  //si può aprire una finestra 'Tu sei qui' al posto del marker
-        finInfo.open(map);
+		finInfo.setPosition(posUtente),	//aprire una finestra 'Tu sei qui' sulla posizione dell'utente
+		finInfo.setContent('Tu sei qui'),  
+		finInfo.open(map);
         map.setCenter(posUtente);//setta il centro della mappa sulla posizione dell'utente
       }
     }, function() {
-      console.log("Errore di geolocalizzazione");
+      console.log("Errore di geolocalizzazione"),
+	  errGeo();
       //gestioneErrori(true, finInfo, map.getCenter());
     });
   } else {
     //se il browser non supporta la geolocalizzazione
-    console.log("Errore di geolocalizzazione");
-    //gestioneErrori(false, finInfo, map.getCenter());
+    console.log("Errore di geolocalizzazione"),
+	errGeo();
+	 //gestioneErrori(false, finInfo, map.getCenter());
   }
-
+function errGeo() {	//si potrebbe fare più figo con la libreria alertify
+    alert("Non è stato possibile geolocalizzarti");
+}
 
   //Inizializzazione del layer di poligoni derivato dalla fusion table, con definizione del tipo, della tabella, e di vari elementi di stile
   var layer = new google.maps.FusionTablesLayer(layerSelector(1));
@@ -192,7 +196,7 @@ function layerSelector(mode){
 
 
 
-function gestioneErrori(browserHasGeolocation, finInfo, posUtente) {
+/*function gestioneErrori(browserHasGeolocation, finInfo, posUtente) { //commento, tanto non la richiamiamo più (riga 35 e 40)
     finInfo.setPosition(coordDuomo);
     finInfo.setContent(browserHasGeolocation ?
       'Errore: Impossibile trovare la tua posizione' :
@@ -200,6 +204,7 @@ function gestioneErrori(browserHasGeolocation, finInfo, posUtente) {
     finInfo.open(map);
     console.log("Errore di geolocalizzazione");
 }
+*/
 
 
 function generateLegend(title, start, finish, color1, color2, color3, color4){

@@ -51,3 +51,335 @@ button{
 	margin:0px auto; 
 	display:inline-block
 }
+
+.N2RTBHD-B-c {  /*da questa linea alla 388 sono tutti parametri di stile per la legenda */
+	display:inline-block;
+	width:7px;
+	height:12px;
+	background-position:center;
+	background-repeat:no-repeat;
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAHCAYAAAAvZezQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpijIyM/M/AwMDIAAVMUPo/ugBcEFkALIguwIgswIisBW4LQIABAMsxBRndEPBOAAAAAElFTkSuQmCC)
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-c {
+	position:absolute;
+	margin-top:7px
+}
+.N2RTBHD-B-b {
+	border-top:1px solid #ebebeb
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-a 
+.N2RTBHD-B-f 
+.N2RTBHD-B-c {
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAECAYAAABCxiV9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACVJREFUeNpivOtt+Z8BB2ACYkYccoxMMAa6BEwnA5oCuEKAAAMAELUCbtQhGEEAAAAASUVORK5CYII=)
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-d {
+	border-bottom:1px solid #ebebeb
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-e {
+	padding-left:12px;
+	overflow:hidden
+}.N2RTBHD-B-b 
+.N2RTBHD-B-f {
+	cursor:default;
+	display:block;
+	font-weight:bold;
+	line-height:30px
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-f div {
+	margin-left:12px
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-f:hover {
+	background-color:#ebebeb
+}
+.N2RTBHD-B-b 
+.N2RTBHD-B-a 
+.N2RTBHD-B-f {
+	color:#dd4b39;
+	font-weight:bold
+}
+.N2RTBHD-C-a {
+	position:relative;
+	width:150px;
+	height:5px;
+	padding:5px 0;
+	margin:0;
+	cursor:default;
+	-webkit-user-select:none;
+	-moz-user-select:none
+}
+.N2RTBHD-C-a:before {
+	content:"";
+	display:block;
+	height:5px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	background:#e5e5e5
+}
+.N2RTBHD-C-a:hover:before {
+	background:#d1d1d1
+}
+.N2RTBHD-C-a 
+.N2RTBHD-C-d {
+	display:block;
+	position:absolute;
+	top:50%;
+	left:0;
+	background:#999;
+	cursor:pointer;
+	cursor:col-resize;
+	-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	-webkit-transition:left .218s,right .218s;
+	-moz-transition:left .218s,right .218s;
+	transition:left .218s,right .218s;
+	outline:none
+}
+.N2RTBHD-C-a 
+.N2RTBHD-C-e {
+	display:block;
+	position:absolute;
+	top:1px;left:1px;
+	background:#999;
+	text-align:center;
+	text-indent:-9999px;
+	line-height:15px
+}
+.N2RTBHD-C-a:hover 
+.N2RTBHD-C-e,
+.N2RTBHD-C-d:focus 
+.N2RTBHD-C-e {
+	background:#fff
+}
+.N2RTBHD-C-a 
+.N2RTBHD-C-d:active {
+	background:#535252
+}
+.N2RTBHD-C-a:active 
+.N2RTBHD-C-d {
+	-webkit-transition:left 0,right 0;
+	-moz-transition:left 0,right 0;
+	transition:left 0,right 0
+}
+.N2RTBHD-C-a 
+.N2RTBHD-C-d:active 
+.N2RTBHD-C-e {
+	background:#535252
+}
+.N2RTBHD-C-b 
+.N2RTBHD-C-d {
+	width:17px;
+	height:17px;
+	margin-top:-8px;
+	margin-left:-8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px
+}
+.N2RTBHD-C-b 
+.N2RTBHD-C-e {
+	width:15px;
+	height:15px;
+	-webkit-border-radius:7px;
+	-moz-border-radius:7px;
+	border-radius:7px
+}
+.N2RTBHD-C-c {
+	padding-bottom:26px;
+	width:200px;
+	white-space:nowrap
+}
+.N2RTBHD-C-c 
+.N2RTBHD-C-d {
+	width:16px;
+	height:9px;
+	margin-top:-18px;
+	margin-left:-8px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-top-right-radius:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	border-top-left-radius:3px;
+	border-top-right-radius:3px
+}
+.N2RTBHD-C-c 
+.N2RTBHD-C-d:before {
+	content:"";
+	display:block;
+	position:absolute;
+	top:9px;
+	border-style:solid;
+	border-color:#999 transparent;
+	border-width:8px 8px 0
+}
+.N2RTBHD-C-c 
+.N2RTBHD-C-d:active:before {
+	border-color:#535252 transparent
+}
+.N2RTBHD-C-c 
+.N2RTBHD-C-e {
+	width:14px;
+	height:8px;
+	-webkit-border-top-left-radius:2px;
+	-webkit-border-top-right-radius:2px;
+	-moz-border-radius-topleft:2px;
+	-moz-border-radius-topright:2px;
+	border-top-left-radius:2px;
+	border-top-right-radius:2px
+}.N2RTBHD-C-c 
+.N2RTBHD-C-e:before {
+	content:"";
+	display:block;
+	position:absolute;
+	top:8px;
+	border-style:solid;
+	border-color:#999 transparent;
+	border-width:7px 7px 0
+}
+.N2RTBHD-C-c:hover 
+.N2RTBHD-C-e {
+	background:#fff
+}
+.N2RTBHD-C-c:hover 
+.N2RTBHD-C-e:before,
+.N2RTBHD-C-d:focus 
+.N2RTBHD-C-e:before {
+	border-color:#fff transparent
+}
+.N2RTBHD-C-c 
+.N2RTBHD-C-d:active 
+.N2RTBHD-C-e:before {
+	border-color:#535252 transparent
+}
+.N2RTBHD-C-f {
+	position:absolute;
+	top:18px;
+	left:0;
+	height:18px;
+	overflow-x:visible
+}
+.N2RTBHD-C-g {
+	display:inline-block;
+	position:relative;
+	width:10px;
+	height:10px;
+	padding-top:8px;
+	font-size:12px;
+	color:#343434
+}
+.N2RTBHD-C-g:first-child {
+	margin-left:-4px
+}
+.N2RTBHD-C-g:before {
+	content:"";
+	display:block;
+	position:absolute;
+	top:0;
+	left:4px;
+	width:1px;
+	height:5px;
+	background:#d0d0d0
+}
+.N2RTBHD-C-h {
+	text-indent:-9999px
+}
+.N2RTBHD-C-h:before { 
+	height:2px
+}
+.N2RTBHD-fb-a {
+	background-color:#f5f5f5;
+	border-bottom:1px solid #e5e5e5;
+	padding-left:16px;
+	padding-top:13px
+}
+.N2RTBHD-fb-i {
+	font-weight:bold;
+	font-size:16px
+}
+.N2RTBHD-fb-j { 
+	margin-left:16px;
+	margin-top:8px
+}
+.N2RTBHD-fb-c,
+.N2RTBHD-fb-k,
+.N2RTBHD-fb-h {
+	font-size:14px
+}
+.N2RTBHD-fb-c,
+.N2RTBHD-fb-k {
+	font-weight:bold;
+	margin-right:8px;
+	vertical-align:middle;
+	white-space:nowrap
+}
+.N2RTBHD-fb-c {
+	display:inline-block;
+	width:60px
+}
+.N2RTBHD-fb-e {
+	margin-top:8px
+}
+.N2RTBHD-fb-h {
+	margin-left:16px;
+	margin-top:16px
+}
+.N2RTBHD-fb-f { 
+	margin-top:16px
+}
+.N2RTBHD-fb-g { 
+	padding-bottom:16px;
+	padding-top:8px
+}
+.N2RTBHD-fb-b {
+	margin-top:16px
+}
+.N2RTBHD-fb-d {
+	margin:16px 0 8px
+}
+.N2RTBHD-gb-a {
+	width:30em
+}
+#googft-legend {	/* parametri stile per la legenda*/
+	background-color:#ffffff;
+	border:1px solid #000;
+	font-family:Arial,sans-serif;
+	font-size:12px;
+	margin:5px;
+	padding:10px 10px 8px
+}
+#googft-legend p {
+	font-weight:bold;
+	margin-top:0
+}
+#googft-legend div {
+	margin-bottom:5px
+}
+.googft-legend-swatch {	/*misure dei blocchettini colorati*/
+	border:1px solid;
+	float:left;
+	height:12px;
+	margin-right:8px;
+	width:20px
+}
+.googft-legend-range {
+	margin-left:0
+}
+.googft-dot-icon {
+	margin-right:8px
+}
+.googft-paddle-icon {
+	height:24px; 
+	left:-8px;
+	margin-right:-8px;
+	position:relative;
+	vertical-align:middle;
+	width:24px
+}
+.N2RTBHD-Ub-a{padding:4px 0}

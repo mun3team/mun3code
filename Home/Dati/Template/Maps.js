@@ -71,79 +71,121 @@ function initMap() {
 function layerSelector(mode){
   var layer;
   if(mode == 1){
+    var color1 = "#00FF00";
+    var color2 = "#22FF22";
+    var color3 = "#33FF33";
+    var color4 = "#AAFFAA";
+    var start = 0;
+    var finish = 100;
+    var title = "Popolazione";
     layer = {
-    query: {
-      select: 'geometry',
-      from: tableId
-    },
-    templateId: 2,
-    styles: [{
-      polygonOptions: {
-        fillColor: '#00FF00',
-        fillOpacity: 0.3
-      }
-    }, {
-      where: 'POP_2010 > 15',
-      polygonOptions: {
-        fillColor: '#0000FF'
-      }
-    }, {
-      where: 'POP_2010 < 15',
-      polygonOptions: {
-        fillOpacity: 1.0
-      }
-    }]
+      query: {
+        select: 'geometry',
+        from: tableId
+      },
+      templateId: 2,
+      styles: [{
+        polygonOptions: {
+          fillColor: color1,
+          fillOpacity: 0.3
+        }
+      }, {
+        where: 'POP_2010 > 10',
+        polygonOptions: {
+          fillColor: color2
+        }
+      }, {
+        where: 'POP_2010 > 50',
+        polygonOptions: {
+          fillColor: color3
+        }
+      },
+      {
+        where: 'POP_2010 > 100',
+        polygonOptions: {
+          fillColor: color4
+        }
+      }]
     };
+    generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   else if(mode == 2){
+    var color1 = "#FF0000";
+    var color2 = "#FF2222";
+    var color3 = "#FF7733";
+    var color4 = "#FFAAAA";
+    var start = 0;
+    var finish = 100;
+    var title = "Popolazione 2";
     layer = {
-    query: {
-      select: 'geometry',
-      from: tableId
-    },
-    templateId: 2,
-    styles: [{
-      polygonOptions: {
-        fillColor: '#AAFF0A',
-        fillOpacity: 0.3
-      }
-    }, {
-      where: 'POP_2010 > 15',
-      polygonOptions: {
-        fillOpacity: 1.0
-      }
-    }, {
-      where: 'POP_2010 < 15',
-      polygonOptions: {
-        fillOpacity: 0.1
-      }
-    }]
+      query: {
+        select: 'geometry',
+        from: tableId
+      },
+      templateId: 2,
+      styles: [{
+        polygonOptions: {
+          fillColor: color1,
+          fillOpacity: 0.3
+        }
+      }, {
+        where: 'POP_2010 > 10',
+        polygonOptions: {
+          fillColor: color2
+        }
+      }, {
+        where: 'POP_2010 > 50',
+        polygonOptions: {
+          fillColor: color3
+        }
+      },
+      {
+        where: 'POP_2010 > 100',
+        polygonOptions: {
+          fillColor: color4
+        }
+      }]
     };
+    generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   else{
+    var color1 = "#00AAFF";
+    var color2 = "#2299FF";
+    var color3 = "#3377FF";
+    var color4 = "#AA00FF";
+    var start = 0;
+    var finish = 100;
+    var title = "Popolazione";
     layer = {
-    query: {
-      select: 'geometry',
-      from: tableId
-    },
-    templateId: 2,
-    styles: [{
-      polygonOptions: {
-        fillColor: '#00FFFF',
-        fillOpacity: 0.3
-      }
-    }, {
-      where: 'POP_2010 > 15',
-      polygonOptions: {
-        fillOpacity: 0.6
-      }
-    }, {
-      where: 'POP_2010 < 15',
-      polygonOptions: {
-        fillOpacity: 0.1
-      }
-    }]
+      query: {
+        select: 'geometry',
+        from: tableId
+      },
+      templateId: 2,
+      styles: [{
+        polygonOptions: {
+          fillColor: color1,
+          fillOpacity: 0.3
+        }
+      }, {
+        where: 'POP_2010 > 10',
+        polygonOptions: {
+          fillColor: color2
+        }
+      }, {
+        where: 'POP_2010 > 50',
+        polygonOptions: {
+          fillColor: color3
+        }
+      },
+      {
+        where: 'POP_2010 > 100',
+        polygonOptions: {
+          fillColor: color4
+        }
+      }]
     };
+    generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   return layer;
 }
@@ -157,4 +199,32 @@ function gestioneErrori(browserHasGeolocation, finInfo, posUtente) {
       'Errore: Il tuo browser non supporta la geolocalizzazione');
     finInfo.open(map);
     console.log("Errore di geolocalizzazione");
+}
+
+
+function generateLegend(title, start, finish, color1, color2, color3, color4){
+  var htmlCode = ["<input id=\"googft-legend-open\" style=\"display:none\" value=\"Legend\" type=\"button\">"];
+  htmlCode.push("<div id=\"googft-legend\">");
+    htmlCode.push("<p id=\"googft-legend-title\">" + title + "</p>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color1 + "\"></span>");
+      htmlCode.push("<span class=\"googft-legend-range\">"+ start +"</span>");
+      htmlCode.push("<br>");
+    htmlCode.push("</div>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color2 + "\"></span>");
+      htmlCode.push("<br>");
+    htmlCode.push("</div>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color3 + "\"></span>");
+      htmlCode.push("<br>");
+    htmlCode.push("</div>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color4 + "\"></span>");
+      htmlCode.push("<span class=\"googft-legend-range\">"+ finish +"</span>");
+    htmlCode.push("</div>");
+    htmlCode.push("<input id=\"googft-legend-close\" style=\"display:none\" value=\"Hide\" type=\"button\">");
+  htmlCode.push("</div>");
+
+  document.getElementById('legenDiv').innerHTML = htmlCode.join('');
 }

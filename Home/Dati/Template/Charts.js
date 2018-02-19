@@ -245,7 +245,7 @@ function drawScatterChart(jsonData) {
       title: 'Dato Numerico'
     },
     hAxis: {
-      title: 'Popolazione'
+      title: 'popolazione'
     }
   }
   chart.draw(data, options);

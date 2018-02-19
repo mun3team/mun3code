@@ -31,19 +31,16 @@ function initMap() {
         map.setCenter(posUtente);//setta il centro della mappa sulla posizione dell'utente
       }
     }, function() {
-      console.log("Errore di geolocalizzazione"),
-	  errGeo();
+      console.log("Errore di geolocalizzazione");
+	//  errGeo();
       //gestioneErrori(true, finInfo, map.getCenter());
     });
   } else {
     //se il browser non supporta la geolocalizzazione
-    console.log("Errore di geolocalizzazione"),
-	errGeo();
+    console.log("Errore di geolocalizzazione");
+	//	errGeo();
 	 //gestioneErrori(false, finInfo, map.getCenter());
   }
-function errGeo() {	//si potrebbe fare più figo con la libreria alertify
-    alert("Non è stato possibile geolocalizzarti");
-}
 
   //Inizializzazione del layer di poligoni derivato dalla fusion table, con definizione del tipo, della tabella, e di vari elementi di stile
   var layer = new google.maps.FusionTablesLayer(layerSelector(1));
@@ -233,3 +230,8 @@ function generateLegend(title, start, finish, color1, color2, color3, color4){
 
   document.getElementById('legenDiv').innerHTML = htmlCode.join('');
 }
+/*
+function errGeo() {	//si potrebbe fare più figo con la libreria alertify
+    alert("Non è stato possibile geolocalizzarti");
+}
+*/

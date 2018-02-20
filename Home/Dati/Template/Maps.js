@@ -14,7 +14,7 @@ function initMap() {
         lat: position.coords.latitude,//latitudine utente
         lng: position.coords.longitude//longitudine utente
       };
-	 finInfo= new google.maps.InfoWindow;
+      finInfo= new google.maps.InfoWindow;
       /*
         Se l'utente si trova in un generico confine all'interno di Milano
       */
@@ -25,31 +25,32 @@ function initMap() {
           map: map
         });
         */
-		finInfo.setPosition(posUtente),	//aprire una finestra 'Tu sei qui' sulla posizione dell'utente
-		finInfo.setContent('Tu sei qui'),  
-		finInfo.open(map);
+    		finInfo.setPosition(posUtente),	//aprire una finestra 'Tu sei qui' sulla posizione dell'utente
+    		finInfo.setContent('Tu sei qui'),
+    		finInfo.open(map);
         map.setCenter(posUtente);//setta il centro della mappa sulla posizione dell'utente
       }
     }, function() {
       console.log("Errore di geolocalizzazione");
-	//  errGeo();
+	    //errGeo();
       //gestioneErrori(true, finInfo, map.getCenter());
     });
   } else {
     //se il browser non supporta la geolocalizzazione
     console.log("Errore di geolocalizzazione");
-	//	errGeo();
-	 //gestioneErrori(false, finInfo, map.getCenter());
+	  //errGeo();
+	  //gestioneErrori(false, finInfo, map.getCenter());
   }
 
   //Inizializzazione del layer di poligoni derivato dalla fusion table, con definizione del tipo, della tabella, e di vari elementi di stile
   var layer = new google.maps.FusionTablesLayer(layerSelector(1));
   //Caricamento del layer sopra alla mappa inizializzata in precedenza
   layer.setMap(map);
+  //Bottoni
   var mod1 = document.getElementById('mod1');
   var mod2 = document.getElementById('mod2');
   var mod3 = document.getElementById('mod3');
-  //add event listener
+  //Listener di eventi per click dei bottoni
   mod1.addEventListener('click', function(event) {
     layer.setOptions(layerSelector(1));
     console.log("mod1");
@@ -62,7 +63,7 @@ function initMap() {
     layer.setOptions(layerSelector(3));
     console.log("mod3");
   });
-
+  //Cose da ricaricare quando si modifica la dimensione della finestra
   $(window).on('resize', function() {
     var currCenter = map.getCenter();
     google.maps.event.trigger(map, 'resize');
@@ -192,8 +193,9 @@ function layerSelector(mode){
 }
 
 
-
-/*function gestioneErrori(browserHasGeolocation, finInfo, posUtente) { //commento, tanto non la richiamiamo più (riga 35 e 40)
+/*
+//Deprecated
+function gestioneErrori(browserHasGeolocation, finInfo, posUtente) { //commento, tanto non la richiamiamo più (riga 35 e 40)
     finInfo.setPosition(coordDuomo);
     finInfo.setContent(browserHasGeolocation ?
       'Errore: Impossibile trovare la tua posizione' :

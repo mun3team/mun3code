@@ -1,0 +1,94 @@
+﻿/*sfondo*/
+body 
+{
+    background-image: url(sfondo.jpg); 
+}
+/*box*/
+.”rogue”{
+    width: 250px;
+    height: 150px;
+    border: 1px solid;
+    color: greenyellow;
+    text-align: center; /* orizzontale */
+    line-height: 150px; /*verticale*/
+}
+/* menù scelta */
+div#scelta {
+    width: 50%;
+    float: right; 
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid black;
+    background: white;
+}
+div#scelta ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+div#scelta li
+{
+    width:100px;
+    float:left;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid black;
+    color:black;
+}
+div#scelta a
+{
+    display: block;
+    padding: 5px;
+    color: #000;
+    text-decoration: none;
+}
+ 
+div#scelta a:hover
+{
+    background-color: #000033;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+div#scelta li ul
+{
+    display: none
+}
+div#scelta li:hover ul
+{
+    display: block;
+    position: absolute;
+    z-index:1;
+    width:150px;
+    padding: 0;
+    margin: 0 0 0 -1px;
+    border:1px solid black;
+    background: white;
+}
+div#scelta li li   {
+    border:none; width:150px; 
+} 
+div#scelta li li a {
+    padding:2px 2px 2px 10px; 
+}
+/* tabella*/
+table {
+	width: 40%;
+}
+th {
+	width: 30%;
+	text-align: left;
+}
+.scrollit {
+    overflow:scroll;
+    height:100px;
+}
+#map {
+	height: 400px;
+	width: 70%;
+   }
+#chart {
+	height: 400px;
+	width: 600px;
+}

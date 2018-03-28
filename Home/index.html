@@ -1,9 +1,51 @@
-<head>
-    <title> Homepage </title>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+--> 
+<html lang="it">   
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Progetto municipio 3</title>
 </head>
-<body>
-    <h1> Homepage</h1><br>
-    <a href="Dati/Popolazione/popolazione.html"> <h3> Popolazione</h3></a><br>
+  <body>
+       <style> @import url(style.css);</style>
+<!--side bar-->       
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-blue"
+  onclick="w3_close()">Chiudi &times;</button>
+  <a href="index.html" class="w3-bar-item w3-button">Homepage</a>
+  <a href="Dati/Popolazione/popolazione.html" class="w3-bar-item w3-button">Dati Poplazione</a>
+  <a href="Dati/Inquinamento/inquinamento.html" class="w3-bar-item w3-button">Dati inquinamento</a>
+  <a href="Dati/Template/template.html" class="w3-bar-item w3-button">Template</a>
+</div>
+<div id="main">
+<div class="w3-teal-black">
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+    <h1>Homepage</h1>
+  </div>
+</div>
+<div class="w3-main-blue" style="margin-left:7px">
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "10%";
+  document.getElementById("mySidebar").style.width = "10%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+<h1> Progetto municipio 3</h1><br>
+    <a href="Dati/Popolazione/popolazione.html"> <h3>Popolazione</h3></a><br>
     <a href="Dati/Inquinamento/inquinamento.html"><h3> Inquinamento</h3></a><br>
     <a href="Dati/Template/template.html"><h3> Template</h3></a><br>
-</body>
+</body> 
+</html>
+

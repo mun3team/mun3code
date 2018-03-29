@@ -1,5 +1,5 @@
 var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
-var tableId = "1meMsvrRBQvCLONE5lufZ7FPxiLEgXxdsxfxBf8YP";
+var tableId = "1t2d4WAWfcUIGvLffXwOAZcihFjTlO-Bxp76Wysi1";
 var jsonCache;
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
@@ -13,9 +13,15 @@ loadData();
 function loadData() {
   var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
   var query = "SELECT " +
-      "'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, " +
-      "'DATO NUMERICO' as Dato";
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'pST' as '%Stranieri', " +
+      "'pMST' as '%Stranieri maschi', " +
+      "'pSTCONTEU' as '%Stranieri dal continente europeo', " +
+      "'pSTCONTAF' as '%Stranieri dal continente Africa', " +
+      "'pSTCONTAS' as '%Stranieri dal continente Asia', " +
+      "'pSTCONTAM' as '%Stranieri dalle Americhe', " +
+      "'pSTCONTOC' as '%Stranieri dal continente Oceania'";
   var limit = " LIMIT 20"; //Solo per debuggare
   var from = " FROM " + tableId;
   var url = dataSourceUrl + query + from +"&key=" + key;
@@ -257,6 +263,12 @@ function drawTableChart(jsonData) {
   data.addColumn('number', jsonData.columns[0]);
   data.addColumn('number', jsonData.columns[1]);
   data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number', jsonData.columns[3]);
+  data.addColumn('number', jsonData.columns[4]);
+  data.addColumn('number', jsonData.columns[5]);
+  data.addColumn('number', jsonData.columns[6]);
+  data.addColumn('number', jsonData.columns[7]);
+  data.addColumn('number', jsonData.columns[8]);
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -265,9 +277,15 @@ function drawTableChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[0],
-      row[1],
-      Number(row[2])
+      Number(row[0]),
+      Number(row[1]),
+      Number(row[2]),
+      Number(row[3]),
+      Number(row[4]),
+      Number(row[5]),
+      Number(row[6]),
+      Number(row[7]),
+      Number(row[8])
     ]);
   });
   // Instantiate and draw our chart, passing in some options.

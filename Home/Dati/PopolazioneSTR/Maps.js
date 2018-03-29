@@ -1,4 +1,4 @@
-var tableId = "1meMsvrRBQvCLONE5lufZ7FPxiLEgXxdsxfxBf8YP";
+var tableId = "1t2d4WAWfcUIGvLffXwOAZcihFjTlO-Bxp76Wysi1";
 
 function initMap() {
   //Inizializzazione della var contenete la mappa, con definizione del centro, del livello di zoom e della div su cui far partire la cosa
@@ -73,13 +73,13 @@ function initMap() {
 function layerSelector(mode){
   var layer;
   if(mode == 1){
-    var color1 = "#00FF00";
-    var color2 = "#22FF22";
-    var color3 = "#33FF33";
-    var color4 = "#AAFFAA";
-    var start = 0;
-    var finish = 100;
-    var title = "Popolazione";
+    var color1 = "#fff9e6";
+    var color2 = "#ffecb3";
+    var color3 = "#ffd966";
+    var color4 = "#ffbf00";
+    var start = "0%";
+    var finish = "60%";
+    var title = "Percentuale di stranieri<br> su popolazione residente";
     layer = {
       query: {
         select: 'geometry',
@@ -92,33 +92,36 @@ function layerSelector(mode){
           fillOpacity: 0.3
         }
       }, {
-        where: 'POP_2010 > 10',
+        where: 'pST > 10',
         polygonOptions: {
-          fillColor: color2
+          fillColor: color2,
+          fillOpacity: 0.35
         }
       }, {
-        where: 'POP_2010 > 50',
+        where: 'pST > 30',
         polygonOptions: {
-          fillColor: color3
+          fillColor: color3,
+          fillOpacity: 0.4
         }
       },
       {
-        where: 'POP_2010 > 100',
+        where: 'pST > 60',
         polygonOptions: {
-          fillColor: color4
+          fillColor: color4,
+          fillOpacity: 0.45
         }
       }]
     };
     generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   else if(mode == 2){
-    var color1 = "#FF0000";
-    var color2 = "#FF2222";
-    var color3 = "#FF7733";
-    var color4 = "#FFAAAA";
-    var start = 0;
-    var finish = 100;
-    var title = "Popolazione 2";
+    var color1 = "#e6e6ff";
+    var color2 = "#b3b3ff";
+    var color3 = "#6666ff";
+    var color4 = "#0000ff";
+    var start = "0%";
+    var finish = "100%";
+    var title = "Percentuale di stranieri<br>maschi";
     layer = {
       query: {
         select: 'geometry',
@@ -131,33 +134,36 @@ function layerSelector(mode){
           fillOpacity: 0.3
         }
       }, {
-        where: 'POP_2010 > 10',
+        where: 'pMST > 50',
         polygonOptions: {
-          fillColor: color2
+          fillColor: color2,
+          fillOpacity: 0.35
         }
       }, {
-        where: 'POP_2010 > 50',
+        where: 'pMST > 75',
         polygonOptions: {
-          fillColor: color3
+          fillColor: color3,
+          fillOpacity: 0.4
         }
       },
       {
-        where: 'POP_2010 > 100',
+        where: 'pMST > 89',
         polygonOptions: {
-          fillColor: color4
+          fillColor: color4,
+          fillOpacity: 0.45
         }
       }]
     };
     generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   else{
-    var color1 = "#00AAFF";
-    var color2 = "#2299FF";
-    var color3 = "#3377FF";
-    var color4 = "#AA00FF";
-    var start = 0;
-    var finish = 100;
-    var title = "Popolazione";
+    var color1 = "#ffe6e6";
+    var color2 = "#ffb3b3";
+    var color3 = "#ff6666";
+    var color4 = "#ff0000";
+    var start = "0%";
+    var finish = "100%";
+    var title = "Percentuale di stranieri<br>non europei";
     layer = {
       query: {
         select: 'geometry',
@@ -170,20 +176,23 @@ function layerSelector(mode){
           fillOpacity: 0.3
         }
       }, {
-        where: 'POP_2010 > 10',
+        where: 'pSTCONTEU < 60',
         polygonOptions: {
-          fillColor: color2
+          fillColor: color2,
+          fillOpacity: 0.35
         }
       }, {
-        where: 'POP_2010 > 50',
+        where: 'pSTCONTEU < 30',
         polygonOptions: {
-          fillColor: color3
+          fillColor: color3,
+          fillOpacity: 0.4
         }
       },
       {
-        where: 'POP_2010 > 100',
+        where: 'pSTCONTEU < 15 AND pST > 0',
         polygonOptions: {
-          fillColor: color4
+          fillColor: color4,
+          fillOpacity: 0.55
         }
       }]
     };

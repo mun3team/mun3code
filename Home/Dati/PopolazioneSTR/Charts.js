@@ -3,16 +3,8 @@ var tableId = "1t2d4WAWfcUIGvLffXwOAZcihFjTlO-Bxp76Wysi1";
 var jsonCache;
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
-//google.load('visualization', '1', { packages: ['corechart'] });
-//google.setOnLoadCallback(drawTable);
-//google.setOnLoadCallback(drawTableChart);
-//google.setOnLoadCallback(drawBarChart);
-loadData();
-//loadChartData();
 
-function loadData() {
-  var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
-  var query = "SELECT " +
+var globalQuery = "SELECT " +
       "'SEZ2011' as 'Sezione di censimento', " +
       "'P1' as 'Popolazione', " +
       "'pST' as '%Stranieri', " +
@@ -22,6 +14,16 @@ function loadData() {
       "'pSTCONTAS' as '%Stranieri dal continente Asia', " +
       "'pSTCONTAM' as '%Stranieri dalle Americhe', " +
       "'pSTCONTOC' as '%Stranieri dal continente Oceania'";
+//google.load('visualization', '1', { packages: ['corechart'] });
+//google.setOnLoadCallback(drawTable);
+//google.setOnLoadCallback(drawTableChart);
+//google.setOnLoadCallback(drawBarChart);
+loadData();
+//loadChartData();
+
+function loadData() {
+  var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
+  var query = globalQuery;
   var limit = " LIMIT 20"; //Solo per debuggare
   var from = " FROM " + tableId;
   var url = dataSourceUrl + query + from +"&key=" + key;
@@ -51,9 +53,8 @@ function loadData() {
 //LIMITATO A 500 LINEE
 function drawTableSmall() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
-  var query = "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM ' +tableId;
+  var query = globalQuery +
+      ' FROM ' +tableId;
   var queryText = encodeURIComponent(query);
   var gvizQuery = new google.visualization.Query(
       'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
@@ -102,9 +103,11 @@ function drawTableChartSmall() {
   google.visualization.drawChart({
     containerId: 'tableChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM ' +tableId,
+    query: "SELECT " +
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'pST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'Table',
     options: {
       title: 'Tabella',
@@ -123,9 +126,11 @@ function drawBarChartSmall() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM '+ tableId,
+    query: "SELECT " +
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'pST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'BarChart',
     options: {
       height: '800',
@@ -145,9 +150,10 @@ function drawScatterChartSmall() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT"+
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM '+ tableId,
+    query: "SELECT " +
+      "'P1' as 'Popolazione', " +
+      "'pST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'ScatterChart',
     options: {
       height: '800',
@@ -166,9 +172,8 @@ function drawScatterChartSmall() {
 function drawBarChart(jsonData) {
   //console.log(jsonData);
   var data = new google.visualization.DataTable();
-  data.addColumn('number', jsonData.columns[0]);
-  data.addColumn('number', jsonData.columns[1]);
   data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number', jsonData.columns[3]);
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -177,11 +182,11 @@ function drawBarChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[0],
-      row[1],
-      Number(row[2])
+      Number(row[2]),
+      Number(row[3])
     ]);
   });
+  //console.log(data);
   // Instantiate and draw our chart, passing in some options.
   //console.log(data.toJSON());
   var chart = new google.visualization.BarChart(document.getElementById('barChart'));
@@ -235,7 +240,7 @@ function drawScatterChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[1],
+      Number(row[1]),
       Number(row[2])
     ]);
   });
@@ -248,7 +253,7 @@ function drawScatterChart(jsonData) {
     title: 'Grafico a dispersione',
     enableInteractivity: 'false',
     vAxis: {
-      title: 'Dato Numerico'
+      title: '% Stranieri'
     },
     hAxis: {
       title: 'Popolazione'

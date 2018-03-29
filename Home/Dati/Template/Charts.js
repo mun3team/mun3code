@@ -47,43 +47,43 @@ function drawTableSmall() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
   var query = "SELECT 'SEZ2011' as Sez2011, " +
       "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP';
+      'FROM ' +tableId;
   var queryText = encodeURIComponent(query);
   var gvizQuery = new google.visualization.Query(
       'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
 
   // Invio della richiesta e creazione dei tag della tabella
   gvizQuery.send(function(response) {
-	//Salvataggio del numero di righe nella tabella (500 max)
+  //Salvataggio del numero di righe nella tabella (500 max)
     var numRows = response.getDataTable().getNumberOfRows();
-	//Salvataggio del numero di colonne nella tabella
+  //Salvataggio del numero di colonne nella tabella
     var numCols = response.getDataTable().getNumberOfColumns();
-	//Creazione dei tag iniziali della tabella
+  //Creazione dei tag iniziali della tabella
     var ftdata = ['<table><thead><tr>'];
-	  //Iterazione per le varie colonne, per aggiungere ciascun campo dell'header
+    //Iterazione per le varie colonne, per aggiungere ciascun campo dell'header
     for (var i = 0; i < numCols; i++) {
       var columnTitle = response.getDataTable().getColumnLabel(i);
       ftdata.push('<th>' + columnTitle + '</th>');
     }
-	//Chiusura dell'header della tabella
+  //Chiusura dell'header della tabella
     ftdata.push('</tr></thead><tbody>');
-	//Iterazione per le righe
+  //Iterazione per le righe
     for (var i = 0; i < numRows; i++) {
-	//Creazione del tag di inizio della riga
+  //Creazione del tag di inizio della riga
       ftdata.push('<tr>');
-	//Iterazione per le colonne all'interno della riga
+  //Iterazione per le colonne all'interno della riga
       for(var j = 0; j < numCols; j++) {
-	//Salvataggio dell valore alla colonna alla riga
+  //Salvataggio dell valore alla colonna alla riga
         var rowValue = response.getDataTable().getValue(i, j);
-	//Caricamento del valore sulla stringa della tabella
+  //Caricamento del valore sulla stringa della tabella
         ftdata.push('<td>' + rowValue + '</td>');
       }
-	//Chiusura della riga
+  //Chiusura della riga
       ftdata.push('</tr>');
     }
-	//Chiusura della tabella
+  //Chiusura della tabella
     ftdata.push('</tbody></table>');
-	//Caricamento della stringa della tabella sulla div 'table'
+  //Caricamento della stringa della tabella sulla div 'table'
     document.getElementById('tabella').innerHTML = ftdata.join('');
   });
 }
@@ -98,7 +98,7 @@ function drawTableChartSmall() {
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
     query: "SELECT 'SEZ2011' as Sez2011, " +
       "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM 17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP',
+      'FROM ' +tableId,
     chartType: 'Table',
     options: {
       title: 'Tabella',

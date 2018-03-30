@@ -1,4 +1,4 @@
-var tableId = "1t2d4WAWfcUIGvLffXwOAZcihFjTlO-Bxp76Wysi1";
+var tableId = "1wV7ezib1-KkxVz1hjKyQli2E-fTB2ro487UvQL32";
 
 function initMap() {
   //Inizializzazione della var contenete la mappa, con definizione del centro, del livello di zoom e della div su cui far partire la cosa
@@ -73,13 +73,13 @@ function initMap() {
 function layerSelector(mode){
   var layer;
   if(mode == 1){
-    var color1 = "#fff9e6";
-    var color2 = "#ffecb3";
-    var color3 = "#ffd966";
-    var color4 = "#ffbf00";
-    var start = "0%";
-    var finish = "60%";
-    var title = "Percentuale di stranieri<br> su popolazione residente";
+    var color1 = "#3366ff";
+    var color2 = "#ff3399";
+    var color3 = "#33cc33";
+    var desc1 = "Muratura portante";
+    var desc2 = "Calcestruzzo armato";
+    var desc3 = "Altro materiale (acciaio, legno, ecc.)"
+    var title = "Materiale di costruzione<br>edifici residenziali";
     layer = {
       query: {
         select: 'geometry',
@@ -89,30 +89,23 @@ function layerSelector(mode){
       styles: [{
         polygonOptions: {
           fillColor: color1,
-          fillOpacity: 0.3
+          fillOpacity: 0.4
         }
       }, {
-        where: 'pST > 10',
+        where: "CALCESTRUZZOARMATO>MURATURAPORTANTE AND CALCESTRUZZOARMATO>ALTROMATERIALE",
         polygonOptions: {
           fillColor: color2,
-          fillOpacity: 0.35
+          fillOpacity: 0.4
         }
       }, {
-        where: 'pST > 30',
+        where: "ALTROMATERIALE>CALCESTRUZZOARMATO AND ALTROMATERIALE>MURATURAPORTANTE",
         polygonOptions: {
           fillColor: color3,
           fillOpacity: 0.4
         }
-      },
-      {
-        where: 'pST > 60',
-        polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.45
-        }
       }]
     };
-    generateLegend(title, start, finish, color1, color2, color3, color4);
+    generateLegendRef(title, desc1, desc2, desc3, color1, color2, color3);
   }
   else if(mode == 2){
     var color1 = "#e6e6ff";
@@ -256,6 +249,29 @@ function generateLegend(title, start, finish, color1, color2, color3, color4){
     htmlCode.push("<div>");
       htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color4 + "\"></span>");
       htmlCode.push("<span class=\"googft-legend-range\">"+ finish +"</span>");
+    htmlCode.push("</div>");
+    htmlCode.push("<input id=\"googft-legend-close\" style=\"display:none\" value=\"Hide\" type=\"button\">");
+  htmlCode.push("</div>");
+
+  document.getElementById('legenDiv').innerHTML = htmlCode.join('');
+}
+function generateLegendRef(title, desc1, desc2, desc3, color1, color2, color3){
+  var htmlCode = ["<input id=\"googft-legend-open\" style=\"display:none\" value=\"Legend\" type=\"button\">"];
+  htmlCode.push("<div id=\"googft-legend\">");
+    htmlCode.push("<p id=\"googft-legend-title\">" + title + "</p>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color1 + "\"></span>");
+      htmlCode.push("<span class=\"googft-legend-range\">"+ desc1 +"</span>");
+      htmlCode.push("<br>");
+    htmlCode.push("</div>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color2 + "\"></span>");
+      htmlCode.push("<span class=\"googft-legend-range\">"+ desc2 +"</span>");
+      htmlCode.push("<br>");
+    htmlCode.push("</div>");
+    htmlCode.push("<div>");
+      htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color3 + "\"></span>");
+      htmlCode.push("<span class=\"googft-legend-range\">"+ desc3 +"</span>");
     htmlCode.push("</div>");
     htmlCode.push("<input id=\"googft-legend-close\" style=\"display:none\" value=\"Hide\" type=\"button\">");
   htmlCode.push("</div>");

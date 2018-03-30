@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Caricamento google Charts API -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+			</script>
+		<!-- Caricamento google JSON API -->
+		<script type="text/javascript" src="https://www.google.com/jsapi">
+			</script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    	</script>
+		<!-- Caricamento del nostro file JavaScript per le tabelle e grafici -->
+		<script src="Charts.js">
+			</script>
+		<!-- Caricamento del nostro file JavaScript per la mappa -->
+		<script src="Maps.js" >
+			</script>
+		<!-- Caricamento del nostro file .css per lo stile della pagina -->
+  		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body {font-family: "Lato", sans-serif}
+		</style>
+		<title>Edifici</title>
+	</head>
+	<body>
+		<h1 align="center">Edifici</h1>
+		<h6 align="center">Conservazione, materiali ed epoca costruttiva</h6>
+		<h2 align="center">Mappa</h2>
+		<div id="outerdiv">
+			<div id="map"></div>
+			<div id="legenDiv" style="z-index: 0; position: absolute; bottom: auto; right: 50px; top: 150px; left: auto;"> <!-- misure per posizionare la legenda -->
+			</div>
+		</div>
+		<table>
+			<tr>
+				<td align="center" class="th1">
+					<button id="mod1">Tipologia<br>costruttiva</button>
+				</td>
+				<td align="center" class="th1">
+					<button id="mod2">%Stranieri<br>maschi</button>
+				</td>
+				<td align="center" class="th1">	
+					<button id="mod3">%Stranieri<br>non europei</button>
+				</td>
+			</tr>
+		</table>
+		<h2 align="center">Tabella</h2>
+		<h6 align="center">A causa della quantit&agrave; di dati, il browser potrebbe bloccare la tabella. <br>
+		&Egrave; comunque possibile visualizzarla al seguente <a href="https://fusiontables.google.com/DataSource?docid=1meMsvrRBQvCLONE5lufZ7FPxiLEgXxdsxfxBf8YP">link</a><br>
+		o ricaricando la pagina dopo qualche secondo.
+		</h6>
+		<div id="outerdiv">
+			<div id="tabella" class = "tabChartScorrevole"></div>
+		</div>
+		<div id="scatterChart"></div>
+		<div id="barChart"></div>
+		<!-- Il caricamento della api di google maps, va mantenuto in fondo a body, in quanto non carica correttamente all'interno della head. -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqtmrCLrcBsiEmmcRkdY2FstEck-lpi50&callback=initMap">
+			</script>
+	</body>
+</html>

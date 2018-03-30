@@ -78,7 +78,7 @@ function layerSelector(mode){
     var color3 = "#ffd966";
     var color4 = "#ffbf00";
     var start = "0%";
-    var finish = "60%";
+    var finish = "100%";
     var title = "Percentuale di stranieri<br> su popolazione residente";
     layer = {
       query: {
@@ -103,12 +103,35 @@ function layerSelector(mode){
           fillColor: color3,
           fillOpacity: 0.4
         }
-      },
-      {
+      }, {
         where: 'pST > 60',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.45
+        }
+      }, {
+        where: 'pST > 70',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.47
+        }
+      }, {
+        where: 'pST > 80',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.53
+        }
+      }, {
+        where: 'pST > 90',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.56
+        }
+      }, {
+        where: 'pST > 96',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.60
         }
       }]
     };

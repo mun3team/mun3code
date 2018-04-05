@@ -43,7 +43,7 @@ function loadData() {
     google.setOnLoadCallback(drawTableChartSmall);
     google.setOnLoadCallback(drawBarChartSmall);
     google.setOnLoadCallback(drawScatterChartSmall);
-  }); 
+  });
 }
 
 /*
@@ -230,8 +230,8 @@ function drawTable(jsonData) {
 function drawScatterChart(jsonData) {
   //console.log(jsonData);
   var data = new google.visualization.DataTable();
-  data.addColumn('number', jsonData.columns[1]);
-  data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number');
+  data.addColumn('number');
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -251,9 +251,11 @@ function drawScatterChart(jsonData) {
     height: '800',
     width: '70%',
     title: 'Grafico a dispersione',
-    enableInteractivity: 'false',
+    enableInteractivity: 'true',
+    legend: 'none',
+    crosshair: { trigger: 'both' },
     vAxis: {
-      title: '% Stranieri'
+      title: '%Stranieri'
     },
     hAxis: {
       title: 'Popolazione'

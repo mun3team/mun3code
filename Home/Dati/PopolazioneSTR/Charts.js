@@ -1,8 +1,19 @@
 var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
-var tableId = "17LYcPq8I-54Yzozqnq6xUus2RyQsPU1fkUH5KKqP";
+var tableId = "1hQjxQGi15DbdZEUdSU28SEgBrWEQf1dQY7U9xk6i";
 var jsonCache;
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
+
+var globalQuery = "SELECT " +
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'%ST' as '%Stranieri', " +
+      "'%MST' as '%Stranieri maschi', " +
+      "'%STCONTEU' as '%Stranieri dal continente europeo', " +
+      "'%STCONTAF' as '%Stranieri dal continente Africa', " +
+      "'%STCONTAS' as '%Stranieri dal continente Asia', " +
+      "'%STCONTAM' as '%Stranieri dalle Americhe', " +
+      "'%STCONTOC' as '%Stranieri dal continente Oceania'";
 //google.load('visualization', '1', { packages: ['corechart'] });
 //google.setOnLoadCallback(drawTable);
 //google.setOnLoadCallback(drawTableChart);
@@ -12,10 +23,7 @@ loadData();
 
 function loadData() {
   var dataSourceUrl = "https://www.googleapis.com/fusiontables/v2/query?sql=";
-  var query = "SELECT " +
-      "'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, " +
-      "'DATO NUMERICO' as Dato";
+  var query = globalQuery;
   var limit = " LIMIT 20"; //Solo per debuggare
   var from = " FROM " + tableId;
   var url = dataSourceUrl + query + from +"&key=" + key;
@@ -35,7 +43,7 @@ function loadData() {
     google.setOnLoadCallback(drawTableChartSmall);
     google.setOnLoadCallback(drawBarChartSmall);
     google.setOnLoadCallback(drawScatterChartSmall);
-  }); 
+  });
 }
 
 /*
@@ -45,45 +53,44 @@ function loadData() {
 //LIMITATO A 500 LINEE
 function drawTableSmall() {
   // Costruzione della "stringa" da mandare alla fusion table per ottenere i dati.
-  var query = "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM ' +tableId;
+  var query = globalQuery +
+      ' FROM ' +tableId;
   var queryText = encodeURIComponent(query);
   var gvizQuery = new google.visualization.Query(
       'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
 
   // Invio della richiesta e creazione dei tag della tabella
   gvizQuery.send(function(response) {
-  //Salvataggio del numero di righe nella tabella (500 max)
+	//Salvataggio del numero di righe nella tabella (500 max)
     var numRows = response.getDataTable().getNumberOfRows();
-  //Salvataggio del numero di colonne nella tabella
+	//Salvataggio del numero di colonne nella tabella
     var numCols = response.getDataTable().getNumberOfColumns();
-  //Creazione dei tag iniziali della tabella
+	//Creazione dei tag iniziali della tabella
     var ftdata = ['<table><thead><tr>'];
-    //Iterazione per le varie colonne, per aggiungere ciascun campo dell'header
+	  //Iterazione per le varie colonne, per aggiungere ciascun campo dell'header
     for (var i = 0; i < numCols; i++) {
       var columnTitle = response.getDataTable().getColumnLabel(i);
       ftdata.push('<th>' + columnTitle + '</th>');
     }
-  //Chiusura dell'header della tabella
+	//Chiusura dell'header della tabella
     ftdata.push('</tr></thead><tbody>');
-  //Iterazione per le righe
+	//Iterazione per le righe
     for (var i = 0; i < numRows; i++) {
-  //Creazione del tag di inizio della riga
+	//Creazione del tag di inizio della riga
       ftdata.push('<tr>');
-  //Iterazione per le colonne all'interno della riga
+	//Iterazione per le colonne all'interno della riga
       for(var j = 0; j < numCols; j++) {
-  //Salvataggio dell valore alla colonna alla riga
+	//Salvataggio dell valore alla colonna alla riga
         var rowValue = response.getDataTable().getValue(i, j);
-  //Caricamento del valore sulla stringa della tabella
+	//Caricamento del valore sulla stringa della tabella
         ftdata.push('<td>' + rowValue + '</td>');
       }
-  //Chiusura della riga
+	//Chiusura della riga
       ftdata.push('</tr>');
     }
-  //Chiusura della tabella
+	//Chiusura della tabella
     ftdata.push('</tbody></table>');
-  //Caricamento della stringa della tabella sulla div 'table'
+	//Caricamento della stringa della tabella sulla div 'table'
     document.getElementById('tabella').innerHTML = ftdata.join('');
   });
 }
@@ -96,9 +103,11 @@ function drawTableChartSmall() {
   google.visualization.drawChart({
     containerId: 'tableChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM ' +tableId,
+    query: "SELECT " +
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'%ST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'Table',
     options: {
       title: 'Tabella',
@@ -117,9 +126,11 @@ function drawBarChartSmall() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT 'SEZ2011' as Sez2011, " +
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM '+ tableId,
+    query: "SELECT " +
+      "'SEZ2011' as 'Sezione di censimento', " +
+      "'P1' as 'Popolazione', " +
+      "'%ST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'BarChart',
     options: {
       height: '800',
@@ -139,9 +150,10 @@ function drawScatterChartSmall() {
   google.visualization.drawChart({
     containerId: 'barChart',
     dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
-    query: "SELECT"+
-      "'POP_2010' as pop2010, 'DATO NUMERICO' as Dato " +
-      'FROM '+ tableId,
+    query: "SELECT " +
+      "'P1' as 'Popolazione', " +
+      "'%ST' as '%Stranieri'" +
+      ' FROM ' +tableId,
     chartType: 'ScatterChart',
     options: {
       height: '800',
@@ -160,9 +172,8 @@ function drawScatterChartSmall() {
 function drawBarChart(jsonData) {
   //console.log(jsonData);
   var data = new google.visualization.DataTable();
-  data.addColumn('number', jsonData.columns[0]);
-  data.addColumn('number', jsonData.columns[1]);
   data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number', jsonData.columns[3]);
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -171,11 +182,11 @@ function drawBarChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[0],
-      row[1],
-      Number(row[2])
+      Number(row[2]),
+      Number(row[3])
     ]);
   });
+  //console.log(data);
   // Instantiate and draw our chart, passing in some options.
   //console.log(data.toJSON());
   var chart = new google.visualization.BarChart(document.getElementById('barChart'));
@@ -185,10 +196,10 @@ function drawBarChart(jsonData) {
       title: 'Grafico a barre',
       enableInteractivity: 'false',
       vAxis: {
-        title: 'Sezione di censimento'
+        title: 'Percentuale di stranieri'
       },
       hAxis: {
-        title: 'Dati'
+        title: 'Percentuale di stranieri maschi'
       }
     }
   chart.draw(data, options);
@@ -219,8 +230,8 @@ function drawTable(jsonData) {
 function drawScatterChart(jsonData) {
   //console.log(jsonData);
   var data = new google.visualization.DataTable();
-  data.addColumn('number', jsonData.columns[1]);
-  data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number');
+  data.addColumn('number');
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -229,7 +240,7 @@ function drawScatterChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[1],
+      Number(row[1]),
       Number(row[2])
     ]);
   });
@@ -240,9 +251,11 @@ function drawScatterChart(jsonData) {
     height: '800',
     width: '70%',
     title: 'Grafico a dispersione',
-    enableInteractivity: 'false',
+    enableInteractivity: 'true',
+    legend: 'none',
+    crosshair: { trigger: 'both' },
     vAxis: {
-      title: 'Dato Numerico'
+      title: '%Stranieri'
     },
     hAxis: {
       title: 'Popolazione'
@@ -257,6 +270,12 @@ function drawTableChart(jsonData) {
   data.addColumn('number', jsonData.columns[0]);
   data.addColumn('number', jsonData.columns[1]);
   data.addColumn('number', jsonData.columns[2]);
+  data.addColumn('number', jsonData.columns[3]);
+  data.addColumn('number', jsonData.columns[4]);
+  data.addColumn('number', jsonData.columns[5]);
+  data.addColumn('number', jsonData.columns[6]);
+  data.addColumn('number', jsonData.columns[7]);
+  data.addColumn('number', jsonData.columns[8]);
 
   jsonData.rows.forEach(function (row) {
     /*
@@ -265,9 +284,15 @@ function drawTableChart(jsonData) {
     console.log(row[2]);
     */
     data.addRow([
-      row[0],
-      row[1],
-      Number(row[2])
+      Number(row[0]),
+      Number(row[1]),
+      Number(row[2]),
+      Number(row[3]),
+      Number(row[4]),
+      Number(row[5]),
+      Number(row[6]),
+      Number(row[7]),
+      Number(row[8])
     ]);
   });
   // Instantiate and draw our chart, passing in some options.

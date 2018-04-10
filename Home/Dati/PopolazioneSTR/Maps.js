@@ -50,6 +50,7 @@ function initMap() {
   var mod1 = document.getElementById('mod1');
   var mod2 = document.getElementById('mod2');
   var mod3 = document.getElementById('mod3');
+  var mod4 = document.getElementById('mod4');
   //Listener di eventi per click dei bottoni
   mod1.addEventListener('click', function(event) {
     layer.setOptions(layerSelector(1));
@@ -62,6 +63,10 @@ function initMap() {
   mod3.addEventListener('click', function(event) {
     layer.setOptions(layerSelector(3));
     console.log("mod3");
+  });
+   mod4.addEventListener('click', function(event) {
+    layer.setOptions(layerSelector(4));
+    console.log("mod4");
   });
   //Cose da ricaricare quando si modifica la dimensione della finestra
   $(window).on('resize', function() {
@@ -239,6 +244,74 @@ function layerSelector(mode){
     };
     generateLegend(title, start, midlow, midhigh, finish, color1, color2, color3, color4);
   }
+  else if(mode == 4){
+    var color1 = "#F4F882";
+    var color2 = "#F3FA17";
+    var color3 = "#F4C714";
+    var color4 = "#F37D06";
+	var color5 = "#F84402";
+	var color6 = "#F90505";
+    var start = "0%";
+	var midlow = "25%";
+	var midhigh = "50%";
+    var finish = "100%";
+    var title = "Percentuale di stranieri<br>Africani";
+    layer = {
+      query: {
+        select: 'geometry',
+        from: tableId
+      },
+      templateId: 2,
+      styles: [{
+        polygonOptions: {
+          fillColor: color1,
+          fillOpacity: 0.3
+        }
+      }, {
+        where: 'pSTCONTAF > 5 AND pST > 0',
+        polygonOptions: {
+          fillColor: color2,
+          fillOpacity: 0.50
+        }
+      }, {
+        where: 'pSTCONTAF > 20 AND pST > 0',
+        polygonOptions: {
+          fillColor: color3,
+          fillOpacity: 0.50
+        }
+      },
+      {
+        where: 'pSTCONTAF > 50 AND pST > 0',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.55
+        }
+      },
+      {
+        where: 'pSTCONTAF > 70 AND pST > 0',
+        polygonOptions: {
+          fillColor: color5,
+          fillOpacity: 0.65
+        }
+      },
+      {
+        where: 'pSTCONTAF > 90 AND pST > 0',
+        polygonOptions: {
+          fillColor: color6,
+          fillOpacity: 0.73
+        }
+      },
+      {
+        where: 'pSTCONTAF < 2 AND pST > 0',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.80
+        }
+      }]
+    };
+    generateLegend(title, start, midlow, midhigh, finish, color1, color3, color5, color6);
+  }
+  
   return layer;
 }
 

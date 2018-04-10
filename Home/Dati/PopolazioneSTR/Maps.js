@@ -73,11 +73,16 @@ function initMap() {
 function layerSelector(mode){
   var layer;
   if(mode == 1){
-    var color1 = "#fff9e6";
-    var color2 = "#ffecb3";
-    var color3 = "#ffd966";
-    var color4 = "#ffbf00";
+    var color1 = "#31fe18";
+    var color2 = "#8fff00";
+    var color3 = "#d7f900";
+    var color4 = "#ffbc00";
+	var color5 = "#ff6200";
+	var color6 = "#ff3c00";
+	var color7 = "#ff0000";
     var start = "0%";
+	var midlow = "25%";
+	var midhigh = "50%";
     var finish = "100%";
     var title = "Percentuale di stranieri<br> su popolazione residente";
     layer = {
@@ -89,60 +94,50 @@ function layerSelector(mode){
       styles: [{
         polygonOptions: {
           fillColor: color1,
-          fillOpacity: 0.3
+          fillOpacity: 0.50
         }
       }, {
-        where: 'pST > 10',
+        where: 'pST > 25',
         polygonOptions: {
-          fillColor: color2,
-          fillOpacity: 0.35
+          fillColor: color3,
+          fillOpacity: 0.50
         }
       }, {
         where: 'pST > 30',
         polygonOptions: {
-          fillColor: color3,
-          fillOpacity: 0.4
+          fillColor: color4,
+          fillOpacity: 0.70
         }
       }, {
-        where: 'pST > 60',
+        where: 'pST > 35',
         polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.45
+          fillColor: color5,
+          fillOpacity: 0.70
         }
       }, {
-        where: 'pST > 70',
+        where: 'pST > 50',
         polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.47
+          fillColor: color6,
+          fillOpacity: 0.70
         }
       }, {
-        where: 'pST > 80',
+        where: 'pST > 55',
         polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.53
-        }
-      }, {
-        where: 'pST > 90',
-        polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.56
-        }
-      }, {
-        where: 'pST > 96',
-        polygonOptions: {
-          fillColor: color4,
-          fillOpacity: 0.60
+          fillColor: color7,
+          fillOpacity: 0.80
         }
       }]
     };
-    generateLegend(title, start, finish, color1, color2, color3, color4);
+    generateLegend(title, start, midlow, midhigh, finish, color1, color3, color4, color7);
   }
   else if(mode == 2){
-    var color1 = "#e6e6ff";
-    var color2 = "#b3b3ff";
-    var color3 = "#6666ff";
-    var color4 = "#0000ff";
+    var color1 = "#00f5b6";
+    var color2 = "#00d2f5";
+    var color3 = "#007cf5";
+    var color4 = "#1902f1";
     var start = "0%";
+	var midlow = "25%";
+	var midhigh = "50%";
     var finish = "100%";
     var title = "Percentuale di stranieri<br>maschi";
     layer = {
@@ -160,31 +155,33 @@ function layerSelector(mode){
         where: 'pMST > 50',
         polygonOptions: {
           fillColor: color2,
-          fillOpacity: 0.35
+          fillOpacity: 0.5
         }
       }, {
         where: 'pMST > 75',
         polygonOptions: {
           fillColor: color3,
-          fillOpacity: 0.4
+          fillOpacity: 0.5
         }
       },
       {
-        where: 'pMST > 89',
+        where: 'pMST > 90',
         polygonOptions: {
           fillColor: color4,
-          fillOpacity: 0.45
+          fillOpacity: 0.5
         }
       }]
     };
-    generateLegend(title, start, finish, color1, color2, color3, color4);
+    generateLegend(title, start, midlow, midhigh, finish, color1, color2, color3, color4);
   }
-  else{
+  else if(mode == 3){
     var color1 = "#ffe6e6";
     var color2 = "#ffb3b3";
     var color3 = "#ff6666";
     var color4 = "#ff0000";
     var start = "0%";
+	var midlow = "25%";
+	var midhigh = "50%";
     var finish = "100%";
     var title = "Percentuale di stranieri<br>non europei";
     layer = {
@@ -202,13 +199,13 @@ function layerSelector(mode){
         where: 'pSTCONTEU < 60 AND pST > 0',
         polygonOptions: {
           fillColor: color2,
-          fillOpacity: 0.35
+          fillOpacity: 0.50
         }
       }, {
         where: 'pSTCONTEU < 30 AND pST > 0',
         polygonOptions: {
           fillColor: color3,
-          fillOpacity: 0.4
+          fillOpacity: 0.50
         }
       },
       {
@@ -240,7 +237,7 @@ function layerSelector(mode){
         }
       }]
     };
-    generateLegend(title, start, finish, color1, color2, color3, color4);
+    generateLegend(title, start, midlow, midhigh, finish, color1, color2, color3, color4);
   }
   return layer;
 }
@@ -259,7 +256,7 @@ function gestioneErrori(browserHasGeolocation, finInfo, posUtente) { //commento,
 */
 
 
-function generateLegend(title, start, finish, color1, color2, color3, color4){
+function generateLegend(title, start, midlow, midhigh, finish, color1, color2, color3, color4){
   var htmlCode = ["<input id=\"googft-legend-open\" style=\"display:none\" value=\"Legend\" type=\"button\">"];
   htmlCode.push("<div id=\"googft-legend\">");
     htmlCode.push("<p id=\"googft-legend-title\">" + title + "</p>");
@@ -270,10 +267,12 @@ function generateLegend(title, start, finish, color1, color2, color3, color4){
     htmlCode.push("</div>");
     htmlCode.push("<div>");
       htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color2 + "\"></span>");
+	  htmlCode.push("<span class=\"googft-legend-range\">"+ midlow +"</span>");
       htmlCode.push("<br>");
     htmlCode.push("</div>");
     htmlCode.push("<div>");
       htmlCode.push("<span class=\"googft-legend-swatch\" style=\"background-color: " + color3 + "\"></span>");
+	  htmlCode.push("<span class=\"googft-legend-range\">"+ midhigh +"</span>");
       htmlCode.push("<br>");
     htmlCode.push("</div>");
     htmlCode.push("<div>");

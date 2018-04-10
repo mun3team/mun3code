@@ -73,10 +73,10 @@ function initMap() {
 function layerSelector(mode){
   var layer;
   if(mode == 1){
-    var color1 = "#00FF00";
-    var color2 = "#22FF22";
-    var color3 = "#33FF33";
-    var color4 = "#AAFFAA";
+    var color4 = "#0b00f5";
+    var color3 = "#00d2f5";
+    var color2 = "#00ffd7";
+    var color1 = "#AAFFAA";
     var start = 0;
     var finish = 100;
     var title = "Popolazione";
@@ -89,33 +89,36 @@ function layerSelector(mode){
       styles: [{
         polygonOptions: {
           fillColor: color1,
-          fillOpacity: 0.3
-        }
-      }, {
-        where: 'POP_2010 > 10',
-        polygonOptions: {
-          fillColor: color2
+          fillOpacity: 0.5
         }
       }, {
         where: 'POP_2010 > 50',
         polygonOptions: {
-          fillColor: color3
+          fillColor: color2,
+		  fillOpacity: 0.3
+        }
+      }, {
+        where: 'POP_2010 > 150',
+        polygonOptions: {
+          fillColor: color3,
+		  fillOpacity: 0.4
         }
       },
       {
-        where: 'POP_2010 > 100',
+        where: 'POP_2010 > 250',
         polygonOptions: {
-          fillColor: color4
+          fillColor: color4,
+		  fillOpacity: 0.5
         }
       }]
     };
     generateLegend(title, start, finish, color1, color2, color3, color4);
   }
   else if(mode == 2){
-    var color1 = "#FF0000";
-    var color2 = "#FF2222";
-    var color3 = "#FF7733";
-    var color4 = "#FFAAAA";
+    var color4 = "#FF0000";
+    var color3 = "#FF2222";
+    var color2 = "#FF7733";
+    var color1 = "#FFAAAA";
     var start = 0;
     var finish = 100;
     var title = "Popolazione 2";
@@ -136,13 +139,13 @@ function layerSelector(mode){
           fillColor: color2
         }
       }, {
-        where: 'POP_2010 > 50',
+        where: 'POP_2010 > 20',
         polygonOptions: {
           fillColor: color3
         }
       },
       {
-        where: 'POP_2010 > 100',
+        where: 'POP_2010 > 30',
         polygonOptions: {
           fillColor: color4
         }

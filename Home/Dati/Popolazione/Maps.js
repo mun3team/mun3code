@@ -1,4 +1,4 @@
-var tableId = "1KRDqMkkXv_ssCTVG8NxyKYeTk0ledRciIMCoM-6u";
+var tableId = "1RoCD7nwylw842-iRdPqi6TzvfTWisNrmoLLEiEJ2";
 function initMap() {
   //Inizializzazione della var contenete la mappa, con definizione del centro, del livello di zoom e della div su cui far partire la cosa
   var coordDuomo = {lat:45.464211, lng:9.191383}
@@ -141,9 +141,9 @@ function layerSelector(mode){
     var color2 = "#b3b3ff";
     var color3 = "#6666ff";
     var color4 = "#0000ff";
-    var start = "0%";
-    var finish = "100%";
-    var title = "Percentuale di stranieri<br>maschi";
+    var start = "Meno densa";
+    var finish = "Più densa";
+    var title = "Densità di popolazione";
     layer = {
       query: {
         select: 'geometry',
@@ -156,23 +156,44 @@ function layerSelector(mode){
           fillOpacity: 0.3
         }
       }, {
-        where: 'pMST > 50',
+        where: 'P1divSHAPE > 1',
         polygonOptions: {
           fillColor: color2,
           fillOpacity: 0.35
         }
       }, {
-        where: 'pMST > 75',
+        where: 'P1divSHAPE > 2',
         polygonOptions: {
           fillColor: color3,
           fillOpacity: 0.4
         }
       },
       {
-        where: 'pMST > 89',
+        where: 'P1divSHAPE > 3',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.45
+        }
+      },
+      {
+        where: 'P1divSHAPE > 4',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.50
+        }
+      },
+      {
+        where: 'P1divSHAPE > 5',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.60
+        }
+      },
+      {
+        where: 'P1divSHAPE > 6',
+        polygonOptions: {
+          fillColor: color4,
+          fillOpacity: 0.70
         }
       }]
     };
@@ -185,7 +206,7 @@ function layerSelector(mode){
     var color4 = "#ff0000";
     var start = "0%";
     var finish = "100%";
-    var title = "Percentuale di stranieri<br>non europei";
+    var title = "Anzianità";
     layer = {
       query: {
         select: 'geometry',
@@ -198,41 +219,41 @@ function layerSelector(mode){
           fillOpacity: 0.3
         }
       }, {
-        where: 'pSTCONTEU < 60 AND pST > 0',
+        where: 'over65anni>20',
         polygonOptions: {
           fillColor: color2,
           fillOpacity: 0.35
         }
       }, {
-        where: 'pSTCONTEU < 30 AND pST > 0',
+        where: 'over65anni>30',
         polygonOptions: {
           fillColor: color3,
           fillOpacity: 0.4
         }
       },
       {
-        where: 'pSTCONTEU < 15 AND pST > 0',
+        where: 'over65anni>50',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.55
         }
       },
       {
-        where: 'pSTCONTEU < 10 AND pST > 0',
+        where: 'over65anni>60',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.65
         }
       },
       {
-        where: 'pSTCONTEU < 5 AND pST > 0',
+        where: 'over65anni>70',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.73
         }
       },
       {
-        where: 'pSTCONTEU < 2 AND pST > 0',
+        where: 'over65anni>90',
         polygonOptions: {
           fillColor: color4,
           fillOpacity: 0.80

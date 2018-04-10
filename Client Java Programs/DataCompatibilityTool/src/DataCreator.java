@@ -11,9 +11,9 @@ public class DataCreator {
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		System.out.println("Inizio");
-		String pathName = "Resources/FasceEta";
+		String pathName = "Resources/FasceEtaPasolini";
 		String extension = ".csv";
-		int length = 22;
+		int length = 33;
 		File file = new File(pathName+extension);
 		CsvReader csvReader = new CsvReader();
 		csvReader.setFieldSeparator(',');
@@ -25,8 +25,8 @@ public class DataCreator {
 			while ((row = csvParser.nextRow()) != null) {
 				System.out.println("Read line: " + row);
 				if(rowCounter != 0){
-					String SEZ2011 = row.getField(0)+".00000000";
-					String[] stringArrayRow = new String[length];
+					String SEZ2011 = row.getField(0)/*+".00000000"*/;
+					String[] stringArrayRow = new String[length+1];
 					stringArrayRow[0] = SEZ2011;
 					for(int i = 1; i < length; i++){
 						if(row.getField(i).equals("#DIV/0!"))
@@ -34,13 +34,23 @@ public class DataCreator {
 						else
 							stringArrayRow[i] = row.getField(i);
 					}
+					double shape;
+					if(row.getField(26).equals(""))
+					    shape = 0;
+					else
+                        shape = Double.parseDouble(row.getField(26)) / 100;
+					if(shape==0)
+					    shape=1;
+					double p1 = Double.parseDouble(row.getField(1));
+					stringArrayRow[length]= Double.toString(p1/shape);
 					lista.add(stringArrayRow);
 				}
 				else{
-					String[] stringArrayRow = new String[length];
+					String[] stringArrayRow = new String[length+1];
 					for(int i = 0; i < length; i++){
 						stringArrayRow[i] = row.getField(i);
 					}
+					stringArrayRow[length]="P1divSHAPE";
 					lista.add(stringArrayRow);
 				}
 				rowCounter++;

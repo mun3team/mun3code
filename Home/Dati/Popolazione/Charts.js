@@ -1,5 +1,5 @@
-var key = "1KRDqMkkXv_ssCTVG8NxyKYeTk0ledRciIMCoM-6u";
-var tableId = "1hQjxQGi15DbdZEUdSU28SEgBrWEQf1dQY7U9xk6i";
+var key = "AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ";
+var tableId = "1RoCD7nwylw842-iRdPqi6TzvfTWisNrmoLLEiEJ2";
 var jsonCache;
 google.load('visualization', '1');
 google.load('visualization', '1', {packages:['table', 'corechart']});
@@ -7,15 +7,12 @@ google.load('visualization', '1', {packages:['table', 'corechart']});
 var globalQuery = "SELECT " +
       "'SEZ2011' as 'Sezione di censimento', " +
       "'P1' as 'Popolazione', " +
-      "'0-5anni' as '%0 a 5 anni', " +
-      "'6-19anni' as '%6 a 19 anni', " +
-      "'20-64anni' as '%20 a 64 anni', " +
-      "'over 65 anni' as '%over 65 anni'";
+      "'0a5 anni', '6a19 anni', '20a64 anni', over65anni, P1divSHAPE"
 //google.load('visualization', '1', { packages: ['corechart'] });
 //google.setOnLoadCallback(drawTable);
 //google.setOnLoadCallback(drawTableChart);
 //google.setOnLoadCallback(drawBarChart);
-loadData();
+//loadData();
 //loadChartData();
 
 function loadData() {
@@ -37,6 +34,7 @@ function loadData() {
     });
 
   }).fail(function(){
+    console.log("query fallita");
     google.setOnLoadCallback(drawTableChartSmall);
     google.setOnLoadCallback(drawBarChartSmall);
     google.setOnLoadCallback(drawScatterChartSmall);

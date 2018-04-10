@@ -97,7 +97,7 @@ function layerSelector(mode){
           fillOpacity: 0.50
         }
       }, {
-        where: 'pST > 25',
+        where: 'pST > 10',
         polygonOptions: {
           fillColor: color3,
           fillOpacity: 0.50
